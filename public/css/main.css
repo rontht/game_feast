@@ -1,0 +1,16 @@
+#content-container {
+    background-color: rgb(121, 121, 121);
+}
+#testing-container {
+    background-color: black;
+    height: 800px;
+}
+#testing {
+    color: rgb(0, 248, 0);
+    margin: 0;
+    padding: 0;
+}
+#footer-container {
+    margin: 0;
+    padding: 0;
+}
