@@ -24,26 +24,16 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Basic Layout CSS */
 .wrapper {
     display: flex;
 }
-#content-container {
-    background-color: rgb(121, 121, 121);
+
+.main {
+    min-height: 100vh;
     width: 100%;
     overflow: hidden;
     transform: all 0.35s ease-in-out;
     background-color: #fafbfe;
-}
-#testing-container {
-    height: 100vh;
-    min-height: 100vh;
-    background-color: black;
-}
-#testing {
-    color: rgb(0, 248, 0);
-    margin: 0;
-    padding: 0;
 }
 
 
@@ -90,21 +80,16 @@ body {
 /* The GameFeast Logo */
 .sidebar-logo {
     margin: auto 0;
-    transition: all .25s ease-in-out;
 }
 .sidebar-logo a {
     color: #fff;
     font-size: 1.15rem;
     font-weight: 600;
 }
-#sidebar-link-span {
-    transition: all .25s ease-in-out;
-}
 
 /* don't show labels if not expanded */
 #sidebar:not(.expand) .sidebar-logo,
 #sidebar:not(.expand) #sidebar-link-span {
-    transition: all .25s ease-in-out;
     display: none;
 }
 
@@ -127,10 +112,9 @@ a.sidebar-link {
     font-size: 0.9rem;
     white-space: nowrap;
     border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
 }
 a.sidebar-link:hover {
     background-color: rgba(255, 255, 255, 0.25);
     border-left: 3px solid white;
-    border-right: 3px solid white;
 }
+

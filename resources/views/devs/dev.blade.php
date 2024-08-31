@@ -1,18 +1,22 @@
 @extends('layouts.master')
 
 @section('title')
-    Misfits: Developers
+    GameFeast: Browse Developers
 @endsection
 
 @section('content')
     <div class="container" id="testing-container">
         <h3 id="testing">!!!___Under Construction___!!!</h3>
-        <h1 id="testing">MANUFACTURERS PAGE</h1>
-        <p id="testing">This will display manufacturers.</p>
+        <h1 id="testing">DEV PAGE</h1>
+        <p id="testing">This will display developers.</p>
+        @if ($devs)
         <ul>
-            <li><a id="testing" href="dev_profile"><u>manufacturer 1</u></a></li>
-            <li><a id="testing" href="dev_profile"><u>manufacturer 2</u></a></li>
-            <li><a id="testing" href="dev_profile"><u>manufacturer 3</u></a></li>
-        </ul>    
+            @foreach ($devs as $dev)
+            <li><a id="testing" href="{{url("dev_profile/$dev->id")}}"><u>{{$dev->name}}</u></a></li>
+            @endforeach
+        </ul>
+        @else
+            No game found.
+        @endif  
     </div>
 @endsection

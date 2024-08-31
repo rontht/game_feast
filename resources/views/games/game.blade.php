@@ -1,14 +1,14 @@
 @extends('layouts.master')
 
 @section('title')
-    Misfits: Home
+    GameFeast: Browse games
 @endsection
 
 @section('content')
     <div class="container" id="testing-container">
         <h3 id="testing">!!!___Under Construction___!!!</h3>
         <h1 id="testing">GAME PAGE</h1>
-        <p id="testing">This is a home page and will display all items</p>
+        <p id="testing">This is a game page and will display all games in different layout</p>
         @if ($games)
         <ul>
             @foreach ($games as $game)

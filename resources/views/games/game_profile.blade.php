@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Misfits: game_name
+    GameFeast: {{$game->name}}
 @endsection
 
 @section('content')
@@ -12,11 +12,18 @@
         <a id="testing" href="{{url("dev_profile/$dev->id")}}"><u>{{$dev->name}}</u></a>
         <p id="testing">{{$game->about}}</p>
         <!-- might be able to use cards from bootstrap for reviews -->
+        @if ($reviews)
         <ul>
-            <li id="testing">review 1</li>
-            <li id="testing">review 2</li>
-            <li id="testing">review 3</li>
-            <li id="testing">review 4</li>
+            @foreach ($reviews as $review)
+            <li>
+                <p id="testing">{{$review->reviewer}}</p>
+                <p id="testing">{{$review->rating}} {{$review->posted_on}}</p>
+                <p id="testing">{{$review->comment}}</p>
+            </li>
+            @endforeach
         </ul>
+        @else
+            No game found.
+        @endif  
     </div>
 @endsection

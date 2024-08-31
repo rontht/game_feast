@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('home')->with('games', $games);
 });
 
+Route::get('sidebar', function () {
+    return view('layouts.sidebar');
+});
+
 Route::get('game', function () {
     $sql = "select * from game";
     $games = DB::select($sql);
@@ -17,11 +21,14 @@ Route::get('game', function () {
 Route::get('game_profile/{id}', function ($id) {
     $game = get_game($id);
     $dev = get_dev($game->dev_id);
-    return view('games.game_profile')->with('game', $game)->with('dev', $dev);
+    $reviews = get_reviews($id);
+    return view('games.game_profile')->with('game', $game)->with('dev', $dev)->with('reviews', $reviews);
 });
 
-Route::get('dev.dev', function () {
-    return view('dev');
+Route::get('dev', function () {
+    $sql = "select * from dev";
+    $devs = DB::select($sql);
+    return view('devs.dev')->with('devs', $devs);
 });
 
 Route::get('dev_profile/{id}', function ($id) {
@@ -33,7 +40,7 @@ Route::get('dev_profile/{id}', function ($id) {
 
 function get_game($id) {
     $sql = "select * from game where id=?";
-    $games = DB::select ($sql, array($id));
+    $games = DB::select($sql, array($id));
     if (count($games)!=1) {
         die("Something went wrong, invalid result: $sql");
     };
@@ -43,10 +50,30 @@ function get_game($id) {
 
 function get_dev($id) {
     $sql = "select * from dev where id=?";
-    $devs = DB::select ($sql, array($id));
+    $devs = DB::select($sql, array($id));
     if (count($devs)!=1) {
         die("Something went wrong, invalid result: $sql");
     };
     $dev = $devs[0];
     return $dev;
+}
+
+function get_reviews($id) {
+    $sql = "select * from review where game_id=?";
+    $reviews = DB::select($sql, array($id));
+    foreach($reviews as $review) {
+        $reviewer = get_reviewer($review->user_id);
+        $review->reviewer = $reviewer->name;
+    };
+    return $reviews;
+}
+
+function get_reviewer($id) {
+    $sql = "select * from user where id=?";
+    $reviewers = DB::select($sql, array($id));
+    if (count($reviewers)!=1) {
+        die("Something went wrong, invalid result: $sql");
+    };
+    $reviewer = $reviewers[0];
+    return $reviewer;
 }

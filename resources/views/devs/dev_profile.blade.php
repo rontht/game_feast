@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Misfits: dev_name
+    GameFeast: {{$dev->name}}
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Nav Bar">
     <div class="container">
         <!-- logo -->
-        <a class="navbar-brand" href="home">Misfit Reviews</a>
+        <a class="navbar-brand" href="{{url("/")}}">GameFeast</a>
 
         <!--hamburger menu-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,12 +30,12 @@
 
                 <!--Reviews-->
                 <li class="nav-item">
-                    <a class="nav-link" href="game">GAMES</a>
+                    <a class="nav-link" href="{{url("game")}}">GAMES</a>
                 </li>
 
                 <!--Manufacturer-->
                 <li class="nav-item">
-                    <a class="nav-link" href="dev">DEVELOPERS</a>
+                    <a class="nav-link" href="{{url("dev")}}">DEVELOPERS</a>
                 </li>
 
             </ul>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Misfits: Home
+    GameFeast
 @endsection
 
 @section('content')
