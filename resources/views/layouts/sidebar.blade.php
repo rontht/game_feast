@@ -1,12 +1,14 @@
 <aside id="sidebar">
     <!-- GameFeast Logo and Label -->
-    <div class="d-flex">
+    <div id="logo-button-container">
         <button id="sidebar-icon" type="button">
-            <i class="lni lni-mushroom"></i>
+            <div class="d-flex">
+                <i class="lni lni-mushroom"></i>
+                <div class="sidebar-logo">
+                    <a href="#">GameFeast</a>
+                </div>
+            </div>
         </button>
-        <div class="sidebar-logo">
-            <a href="{{url("/")}}">GameFeast</a>
-        </div>
     </div>
     <ul class="sidebar-nav">
         <!-- HOME PAGE -->

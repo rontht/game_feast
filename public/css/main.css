@@ -21,25 +21,39 @@ h1 {
 }
 
 body {
+    background-image: linear-gradient(rgb(128, 0, 42), rgb(135, 0, 189));
     font-family: 'Poppins', sans-serif;
 }
 
-/* Basic Layout CSS */
+textarea {
+    resize: none;
+}
+
+/* _________________________________________________________ Basic Layout CSS */
 .wrapper {
     display: flex;
 }
+
+/* Content Container Styles */
 #content-container {
-    background-color: rgb(121, 121, 121);
     width: 100%;
     overflow: hidden;
     transform: all 0.35s ease-in-out;
-    background-color: #fafbfe;
-}
-#testing-container {
+    padding: 0;
     height: 100vh;
     min-height: 100vh;
+    background-color: #831515;
+    animation: neon-border 1.5s infinite alternate;
+    border-left: 0.2rem solid #fff;
+    border-right: 0.2rem solid #fff;
+}
+
+#testing-container {
+    /* height: 100vh;
+    min-height: 100vh; */
     background-color: black;
 }
+
 #testing {
     color: rgb(0, 248, 0);
     margin: 0;
@@ -47,12 +61,66 @@ body {
 }
 
 
+@keyframes neon-border {
+    100% {
+        box-shadow:
+            0 0 4px #fff,
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 13px #bc13fe,
+            0 0 16px #bc13fe,
+            0 0 19px #bc13fe,
+            0 0 22px #bc13fe,
+            0 0 25px #bc13fe;
+    }
+
+    0% {
+        box-shadow:
+            0 0 2px #fff,
+            0 0 4px #fff,
+            0 0 6px #fff,
+            0 0 8px #bc13fe,
+            0 0 10px #bc13fe,
+            0 0 12px #bc13fe,
+            0 0 13px #bc13fe,
+            0 0 15px #bc13fe;
+    }
+}
+
+@keyframes neon-text {
+    100% {
+        text-shadow:
+            0 0 4px #fff,
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 13px #bc13fe,
+            0 0 16px #bc13fe,
+            0 0 19px #bc13fe,
+            0 0 22px #bc13fe,
+            0 0 25px #bc13fe;
+    }
+
+    0% {
+        text-shadow:
+            0 0 2px #fff,
+            0 0 4px #fff,
+            0 0 6px #fff,
+            0 0 8px #bc13fe,
+            0 0 10px #bc13fe,
+            0 0 12px #bc13fe,
+            0 0 13px #bc13fe,
+            0 0 15px #bc13fe;
+    }
+}
+
+
+/* _________________________________________________________ Sidebar */
 #sidebar {
     width: 70px;
     min-width: 70px;
     min-height: calc(100vh);
     z-index: 1000;
-    transition: all .25s ease-in-out;
+    transition: all 0.4s ease-in-out;
     display: flex;
     flex-direction: column;
     background-color: #4d0808;
@@ -69,19 +137,20 @@ body {
 }
 
 /* GameFeast Icon and Logo background */
-.d-flex {
+#logo-button-container {
     background-color: #2e0000;
     border-radius: 0 20px 0 20px;
     border-bottom: 3px solid #000000;
 }
 
 /* The GameFeast Icon aka Star */
-#sidebar-icon{
+#sidebar-icon {
     background-color: transparent;
     cursor: pointer;
     border: 0;
     padding: 1rem 1.5rem;
 }
+
 #sidebar-icon i {
     font-size: 1.5rem;
     color: #fff;
@@ -89,23 +158,29 @@ body {
 
 /* The GameFeast Logo */
 .sidebar-logo {
-    margin: auto 0;
-    transition: all .25s ease-in-out;
+    margin: 0 0 0 10px;
+    opacity: 100;
+    transition: all 0.3s ease-in-out;
+    transition-delay: 0.2s;
 }
+
+#sidebar-link-span {
+    opacity: 100;
+    transition: all 0.3s ease-in-out;
+    transition-delay: 0.2s;
+}
+
 .sidebar-logo a {
     color: #fff;
     font-size: 1.15rem;
     font-weight: 600;
 }
-#sidebar-link-span {
-    transition: all .25s ease-in-out;
-}
 
 /* don't show labels if not expanded */
 #sidebar:not(.expand) .sidebar-logo,
 #sidebar:not(.expand) #sidebar-link-span {
-    transition: all .25s ease-in-out;
-    display: none;
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
 }
 
 /* for nav bar excluding GameFeast logo */
@@ -119,6 +194,7 @@ body {
     font-size: 1.1rem;
     margin-right: 1rem;
 }
+
 /* for icon background */
 a.sidebar-link {
     padding: .625rem 1.4rem;
@@ -129,8 +205,220 @@ a.sidebar-link {
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
 }
+
 a.sidebar-link:hover {
     background-color: rgba(255, 255, 255, 0.25);
     border-left: 3px solid white;
     border-right: 3px solid white;
+}
+
+/* _________________________________________________________ Add Menu */
+#add-container:not(.display) #add-form {
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
+}
+
+#add-container {
+    width: 0px;
+    min-width: 0px;
+    min-height: calc(100vh);
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color: #4d0808;
+}
+
+#add-container.display {
+    width: 350px;
+    min-width: 350px;
+    opacity: 100;
+    transition: all 0.3s ease-in-out;
+}
+
+#add-form {
+    width: 90%;
+    margin: 15px auto;
+    padding: 10px;
+    display: block;
+    opacity: 100;
+    transition: all 0.5s ease-in-out;
+}
+
+#add-input-container {
+    margin: 15px auto;
+    color: white;
+    /* background-color: #000000; */
+}
+
+#add-input,
+#add-textarea {
+    width: 100%;
+    background-color: #7a0000;
+    color: #fff;
+}
+
+#add-textarea {
+    height: 20vh;
+}
+
+/* Title for Add game */
+#add-title {
+    color: #fff;
+    text-align: center;
+}
+
+/* Add game button */
+#add-button {
+    margin-top: 30px;
+    width: 100%;
+}
+
+
+/* _________________________________________________________ Topbar */
+#topbar {
+    width: 100%;
+    background-color: #000000;
+    border-bottom: 0.2rem solid #fff;
+    margin-bottom: 20px;
+    height: 50px;
+    color: white;
+    /* animation: neon-text 1.5s infinite alternate; */
+}
+
+#add-button-container {
+    height: 100%;
+    background-color: #fff;
+    text-align: center;
+}
+
+#add-button-container:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-bottom: 3px solid #e20000;
+
+}
+
+#add-button-container button {
+    height: 50px;
+    padding: 0;
+    background-color: transparent;
+}
+
+#add-game,
+#add-dev {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#heading {
+    margin-left: 10px;
+    font-size: 3rem;
+    margin: 0;
+}
+
+/* _________________________________________________________ Home */
+#card-container {
+    margin: 0 10px;
+    border-radius: 10px;
+    background-color: #000000;
+    border: 0.2rem solid #fff;
+    padding: 0.4em;
+    margin-top: 10px;
+}
+
+#card-holder {
+    margin: 10px;
+    height: 70vh;
+    /* background-color: black; */
+    overflow-y: auto;
+}
+
+#card-holder h5 {
+    font-size: small;
+}
+
+/* _________________________________________________________ Game Detail */
+#game-container {
+    height: 90vh;
+    min-height: 90vh;
+}
+
+/* this will have fixed height */
+#game-detail-section {
+    min-height: 35vh;
+}
+
+#game-image-box {
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image-holder {
+    width: 400px;
+    height: 250px;
+    background-color: #e20000;
+    border-radius: 10px;
+    border: 3px solid black;
+}
+
+#image-placeholder {
+    border-radius: 5px;
+    height: 100%;
+    background-color: white;
+    color: darkred;
+    text-align: center;
+}
+
+#game-detail-box {
+    background-color: aqua;
+    color: red;
+}
+
+/* this will have fixed height */
+#add-review-section {
+    height: 150px;
+    background-color: burlywood;
+}
+
+#username-input {
+    width: 90%;
+    background-color: aqua;
+}
+
+#review-icon, #rating-display {
+    background-color: aqua;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#rating-range::-webkit-slider-thumb {
+    background: gray;
+}
+
+#rating-range::-moz-range-thumb {
+    background: gray;
+}
+
+#rating-range::-ms-thumb {
+    background: gray;
+}
+
+/* this will take the remaining height */
+#reviews-section {
+    height: 55vh;
+    background-color: cadetblue;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+#reviews-container {
+    width: 70%;
 }

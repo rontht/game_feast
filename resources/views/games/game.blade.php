@@ -4,6 +4,11 @@
     GameFeast: Browse games
 @endsection
 
+
+@section('heading')
+    Browse Games
+@endsection
+
 @section('content')
     <div class="container" id="testing-container">
         <h3 id="testing">!!!___Under Construction___!!!</h3>

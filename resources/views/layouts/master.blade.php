@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Thwin and Bootstrap">
     <meta name="description" content="">
-    <title>Sidebar Test</title>
+    <title>@yield('title')</title>
 
 
     <!-- Bootstrap CSS -->
@@ -27,9 +27,16 @@
 <body>
     <div class="wrapper">
         @include('layouts.sidebar')
-        <div id="content-container">
+
+        <div class="container" id="content-container">
+            @include('layouts.topbar')
             @yield('content')
         </div>
+
+        <div id="add-container" class="overflow-hidden">
+            @include('layouts.add_form')
+        </div>
+
     </div>
     <!-- Bootstrap Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

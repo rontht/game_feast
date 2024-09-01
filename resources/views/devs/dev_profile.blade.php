@@ -4,6 +4,10 @@
     GameFeast: {{$dev->name}}
 @endsection
 
+@section('heading')
+    {{$dev->name}}
+@endsection
+
 @section('content')
     <div class="container" id="testing-container">
         <h3 id="testing">!!!___Under Construction___!!!</h3>

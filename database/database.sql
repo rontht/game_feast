@@ -31,8 +31,8 @@ create table review (
     comment text default '',
     rating integer,
     posted_on date,
-    game_id integer not null references dev(dev_id),
-    user_id integer not null references user(user_id)
+    game_id integer not null references game(id),
+    user_id integer not null references user(id)
 );
 
 -- USERs
@@ -59,6 +59,7 @@ insert into game values(null, "Counter-Strike 2", "2012-08-22", "game descriptio
 
 insert into review values(null, "good game", 9, "2016-08-22", 1, 2);
 insert into review values(null, "I had fun", 7, "2016-08-22", 1, 3);
+insert into review values(null, "it's alright", 6, "2016-08-22", 1, 3);
 insert into review values(null, "meh", 5, "2016-08-22", 1, 4);
 
 insert into review values(null, "it's okay", 5, "2016-08-22", 2, 2);
