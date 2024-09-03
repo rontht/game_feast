@@ -3,11 +3,8 @@
         <div class="col">
             <h1 id="heading">@yield('heading')</h1>
         </div>
-        <div class="col p-0" id="add-button-container" style="max-width: 200px;">
-            <button id="add-game" type="button"><i class="lni lni-plus"></i>ADD GAME</button>
-        </div>
-        <div class="col p-0" id="add-button-container" style="max-width: 200px;">
-            <button id="add-dev" type="button"><i class="lni lni-plus"></i>ADD DEV</button>
+        <div class="col p-0" id="add-button-container">
+            <button id="add-menu-button" type="button" onclick="showForm(1)"><i class="lni lni-plus"></i>ADD</button>
         </div>
     </div>
 </div>

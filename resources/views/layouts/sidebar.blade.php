@@ -79,7 +79,20 @@
         </li>
     </ul>
     <div class="sidebar-footer">
-        <a href="#" class="sidebar-link">
+        @if (Session::get('name'))
+            <a id="username-link">
+                <i class="lni lni-user"></i>
+                <span id="sidebar-link-span">{{Session::get('name')}}</span>
+            </a>
+        @else
+            <a id="username-link">
+                <i class="lni lni-unlink"></i>
+                <span id="sidebar-link-span">no user</span>
+            </a>
+        @endif
+    </div>
+    <div class="sidebar-footer">
+        <a href="{{url('log_out')}}" class="sidebar-link">
             <i class="lni lni-exit"></i>
             <span id="sidebar-link-span">Logout</span>
         </a>

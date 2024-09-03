@@ -42,18 +42,19 @@ insert into user values (null, "reviewer 2");
 insert into user values (null, "reviewer 3");
 
 -- DEVs
+insert into dev values (null, "Unknown Developer", "Games added without developer information.");
 insert into dev values (null, "CREATIVE ASSEMBLY", "dev description");
 insert into dev values (null, "Klei", "dev description");
 insert into dev values (null, "Valve", "dev description");
 
 -- GAMEs
-insert into game values(null, "Total War: SHOGUN 2", "2011-03-15", "game description", "Grand Strategy", "$44.99", 1, 1);
-insert into game values(null, "Total War: PHARAOH", "2023-10-12", "game description", "Grand Strategy", "$59.99", 1, 1);
-insert into game values(null, "Total War: WARHAMMER III", "2022-02-17", "game description", "Grand Strategy", "$99.99", 1, 1);
-insert into game values(null, "Don't Starve Together", "2016-04-22", "game description", "Survival", "$21.50", 2, 1);
-insert into game values(null, "Oxygen Not Included", "2019-07-31", "game description", "Base Building", "$35.95", 2, 1);
-insert into game values(null, "Dota 2", "2013-07-10", "game description", "MOBA", "Free", 3, 1);
-insert into game values(null, "Counter-Strike 2", "2012-08-22", "game description", "FPS", "Free", 3, 1);
+insert into game values(null, "Total War: SHOGUN 2", "2011-03-15", "game description", "Grand Strategy", "44.99", 2, 1);
+insert into game values(null, "Total War: PHARAOH", "2023-10-12", "game description", "Grand Strategy", "59.99", 2, 1);
+insert into game values(null, "Total War: WARHAMMER III", "2022-02-17", "game description", "Grand Strategy", "99.99", 2, 1);
+insert into game values(null, "Don't Starve Together", "2016-04-22", "game description", "Survival", "21.50", 3, 1);
+insert into game values(null, "Oxygen Not Included", "2019-07-31", "game description", "Base Building", "35.95", 3, 1);
+insert into game values(null, "Dota 2", "2013-07-10", "game description", "MOBA", "Free", 4, 1);
+insert into game values(null, "Counter-Strike 2", "2012-08-22", "game description", "FPS", "Free", 4, 1);
 
 -- REVIEWs
 

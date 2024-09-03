@@ -33,9 +33,7 @@
             @yield('content')
         </div>
 
-        <div id="add-container" class="overflow-hidden">
-            @include('layouts.add_form')
-        </div>
+        @yield('forms')
 
     </div>
     <!-- Bootstrap Script -->

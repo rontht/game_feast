@@ -1,5 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+:root {
+    --dark-bg: #424874;
+    --main-bg: #A6B1E1;
+    --light-bg: #DCD6F7;
+    --input-bg: #F4EEFF;
+    
+    --logo-font: #fff;
+    --main-font: #000000;
+    
+    --main-border: #fff;
+    --dark-border: #2a2d49;
+
+    --neon-color: #7C00FE;
+}
+
 ::after,
 ::before {
     box-sizing: border-box;
@@ -21,7 +36,8 @@ h1 {
 }
 
 body {
-    background-image: linear-gradient(rgb(128, 0, 42), rgb(135, 0, 189));
+    background-image: linear-gradient(#000000, #7C00FE);
+    /* background-image: linear-gradient(#f2a7ff, rgb(92, 255, 220)); */
     font-family: 'Poppins', sans-serif;
 }
 
@@ -42,10 +58,10 @@ textarea {
     padding: 0;
     height: 100vh;
     min-height: 100vh;
-    background-color: #831515;
+    background-image: linear-gradient(var(--dark-bg), var(--main-bg));
     animation: neon-border 1.5s infinite alternate;
-    border-left: 0.2rem solid #fff;
-    border-right: 0.2rem solid #fff;
+    border-left: 0.2rem solid var(--neon-color);
+    border-right: 0.2rem solid var(--neon-color);
 }
 
 #testing-container {
@@ -60,18 +76,17 @@ textarea {
     padding: 0;
 }
 
-
 @keyframes neon-border {
     100% {
         box-shadow:
             0 0 4px #fff,
             0 0 7px #fff,
             0 0 10px #fff,
-            0 0 13px #bc13fe,
-            0 0 16px #bc13fe,
-            0 0 19px #bc13fe,
-            0 0 22px #bc13fe,
-            0 0 25px #bc13fe;
+            0 0 13px var(--neon-color),
+            0 0 16px var(--neon-color),
+            0 0 19px var(--neon-color),
+            0 0 22px var(--neon-color),
+            0 0 25px var(--neon-color);
     }
 
     0% {
@@ -79,25 +94,25 @@ textarea {
             0 0 2px #fff,
             0 0 4px #fff,
             0 0 6px #fff,
-            0 0 8px #bc13fe,
-            0 0 10px #bc13fe,
-            0 0 12px #bc13fe,
-            0 0 13px #bc13fe,
-            0 0 15px #bc13fe;
+            0 0 8px var(--neon-color),
+            0 0 10px var(--neon-color),
+            0 0 12px var(--neon-color),
+            0 0 13px var(--neon-color),
+            0 0 15px var(--neon-color);
     }
 }
 
 @keyframes neon-text {
     100% {
         text-shadow:
-            0 0 4px #fff,
-            0 0 7px #fff,
             0 0 10px #fff,
-            0 0 13px #bc13fe,
-            0 0 16px #bc13fe,
-            0 0 19px #bc13fe,
-            0 0 22px #bc13fe,
-            0 0 25px #bc13fe;
+            0 0 20px #fff,
+            0 0 30px #fff,
+            0 0 43px #bc13fe,
+            0 0 56px #bc13fe,
+            0 0 65px #bc13fe,
+            0 0 72px #bc13fe,
+            0 0 80px #bc13fe;
     }
 
     0% {
@@ -112,7 +127,6 @@ textarea {
             0 0 15px #bc13fe;
     }
 }
-
 
 /* _________________________________________________________ Sidebar */
 #sidebar {
@@ -123,11 +137,11 @@ textarea {
     transition: all 0.4s ease-in-out;
     display: flex;
     flex-direction: column;
-    background-color: #4d0808;
+    background-color: var(--main-bg);
 }
 
 #platforms-item {
-    background-color: #831515;
+    background-color: var(--light-bg);
 }
 
 /* Expand Size */
@@ -138,7 +152,7 @@ textarea {
 
 /* GameFeast Icon and Logo background */
 #logo-button-container {
-    background-color: #2e0000;
+    background-color: var(--dark-bg);
     border-radius: 0 20px 0 20px;
     border-bottom: 3px solid #000000;
 }
@@ -153,7 +167,7 @@ textarea {
 
 #sidebar-icon i {
     font-size: 1.5rem;
-    color: #fff;
+    color: var(--logo-font);
 }
 
 /* The GameFeast Logo */
@@ -171,7 +185,7 @@ textarea {
 }
 
 .sidebar-logo a {
-    color: #fff;
+    color: var(--logo-font);
     font-size: 1.15rem;
     font-weight: 600;
 }
@@ -190,15 +204,17 @@ textarea {
 }
 
 /* for icons */
-.sidebar-link i {
+.sidebar-link i,
+#username-link i {
     font-size: 1.1rem;
     margin-right: 1rem;
 }
 
 /* for icon background */
-a.sidebar-link {
+a.sidebar-link,
+#username-link {
     padding: .625rem 1.4rem;
-    color: #fff;
+    color: var(--main-font);
     display: block;
     font-size: 0.9rem;
     white-space: nowrap;
@@ -208,17 +224,19 @@ a.sidebar-link {
 
 a.sidebar-link:hover {
     background-color: rgba(255, 255, 255, 0.25);
-    border-left: 3px solid white;
-    border-right: 3px solid white;
+    border-left: 3px solid var(--dark-bg);
+    border-right: 3px solid var(--dark-bg);
 }
 
 /* _________________________________________________________ Add Menu */
-#add-container:not(.display) #add-form {
+#form_1:not(.display) #add-form,
+#form_2:not(.display) #edit-game-form,
+#form_3:not(.display) #edit-dev-form {
     opacity: 0;
     transition: all 0.1s ease-in-out;
 }
 
-#add-container {
+#form_1, #form_2, #form_3 {
     width: 0px;
     min-width: 0px;
     min-height: calc(100vh);
@@ -226,76 +244,106 @@ a.sidebar-link:hover {
     transition: all 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
-    background-color: #4d0808;
+    background-color: var(--main-bg);
 }
 
-#add-container.display {
+#form_1.display, #form_2.display, #form_3.display {
     width: 350px;
     min-width: 350px;
     opacity: 100;
     transition: all 0.3s ease-in-out;
 }
 
-#add-form {
-    width: 90%;
-    margin: 15px auto;
-    padding: 10px;
+#add-form, #edit-game-form, #edit_dev_form {
+    color: var(--main-font);
     display: block;
     opacity: 100;
     transition: all 0.5s ease-in-out;
 }
 
-#add-input-container {
-    margin: 15px auto;
-    color: white;
-    /* background-color: #000000; */
+#add-input,
+#price-input,
+#add-textarea,
+#dev-select {
+    width: 100%;
+    background-color: var(--input-bg);
+    color: var(--main-font);
 }
 
-#add-input,
-#add-textarea {
-    width: 100%;
-    background-color: #7a0000;
-    color: #fff;
+#validation-feedback {
+    text-align: end;
+    margin-top: -60px;
+    margin-bottom: 39px;
+}
+
+#validation-feedback-select {
+    text-align: end;
+    margin-top: -120px;
+    margin-bottom: 99px;
+}
+
+#dev-select {
+    height: 100px;
 }
 
 #add-textarea {
     height: 20vh;
 }
 
-/* Title for Add game */
-#add-title {
-    color: #fff;
-    text-align: center;
-}
-
 /* Add game button */
 #add-button {
-    margin-top: 30px;
     width: 100%;
+}
+
+#add-form-dropdown {
+    background-color: var(--light-bg);
+}
+
+/* for icons */
+#add-form-icon {
+    font-size: 1.1rem;
+    margin-right: 1rem;
+}
+
+/* for icon background */
+a#add-form-link {
+    padding: .625rem 1.4rem;
+    color: var(--main-font);
+    display: block;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+}
+
+a#add-form-link:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-left: 3px solid var(--dark-bg);
+    border-right: 3px solid var(--dark-bg);
 }
 
 
 /* _________________________________________________________ Topbar */
 #topbar {
     width: 100%;
-    background-color: #000000;
-    border-bottom: 0.2rem solid #fff;
-    margin-bottom: 20px;
+    /* background-color: #000000; */
+    /* border-bottom: 0.2rem solid #fff; */
+    /* margin-bottom: 20px; */
     height: 50px;
-    color: white;
+    color: var(--logo-font);
     /* animation: neon-text 1.5s infinite alternate; */
 }
 
 #add-button-container {
     height: 100%;
-    background-color: #fff;
-    text-align: center;
+    /* background-color: var(--dark-bg); */
+    /* text-align: center; */
+    max-width: 100px;
+    height: 50px;
 }
 
 #add-button-container:hover {
     background-color: rgba(255, 255, 255, 0.25);
-    border-bottom: 3px solid #e20000;
-
 }
 
 #add-button-container button {
@@ -304,8 +352,7 @@ a.sidebar-link:hover {
     background-color: transparent;
 }
 
-#add-game,
-#add-dev {
+#add-menu-button {
     background-color: transparent;
     cursor: pointer;
     border: 0;
@@ -322,9 +369,9 @@ a.sidebar-link:hover {
 /* _________________________________________________________ Home */
 #card-container {
     margin: 0 10px;
-    border-radius: 10px;
-    background-color: #000000;
-    border: 0.2rem solid #fff;
+    border-radius: 30px; 
+    background-color: var(--light-bg);
+    border: 3px solid var(--main-border); 
     padding: 0.4em;
     margin-top: 10px;
 }
@@ -340,15 +387,45 @@ a.sidebar-link:hover {
     font-size: small;
 }
 
-/* _________________________________________________________ Game Detail */
-#game-container {
-    height: 90vh;
-    min-height: 90vh;
+/* _________________________________________________________ Game Profile */
+#game-layout {
+    background-color: var(--light-bg);
+    border-radius: 30px; 
+    border: 3px solid var(--main-border); 
 }
 
 /* this will have fixed height */
 #game-detail-section {
-    min-height: 35vh;
+    height: 30vh;
+    min-height: 30vh;
+}
+
+#average-section {
+    height: 8vh;
+    min-height: 8vh;
+    /* border-top: 3px solid black; */
+    border-bottom: 3px solid var(--dark-border);
+    padding-top: 13px;
+    background-color: var(--dark-bg);
+}
+
+/* this will take the remaining height */
+#reviews-section {
+    height: 55vh;
+    min-height: 55vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* this will have fixed height */
+#review-form-section {
+    height: 40vh;
+    min-height: 40vh;
+}
+
+#other-section {
+    height: 53vh;
+    min-height: 53vh;
 }
 
 #game-image-box {
@@ -361,64 +438,120 @@ a.sidebar-link:hover {
 #image-holder {
     width: 400px;
     height: 250px;
-    background-color: #e20000;
+    background-color: black;
     border-radius: 10px;
-    border: 3px solid black;
+    border: 3px solid var(--main-border);
 }
 
 #image-placeholder {
     border-radius: 5px;
     height: 100%;
     background-color: white;
-    color: darkred;
+    color: green;
     text-align: center;
 }
 
 #game-detail-box {
-    background-color: aqua;
-    color: red;
+    color: var(--main-font);
 }
 
-/* this will have fixed height */
-#add-review-section {
-    height: 150px;
-    background-color: burlywood;
-}
-
-#username-input {
-    width: 90%;
-    background-color: aqua;
-}
-
-#review-icon, #rating-display {
-    background-color: aqua;
+#review-icon,
+#rating-display {
     width: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* This change range style */
 #rating-range::-webkit-slider-thumb {
-    background: gray;
+    background: var(--dark-bg);
 }
 
 #rating-range::-moz-range-thumb {
-    background: gray;
+    background: var(--dark-bg);
 }
 
 #rating-range::-ms-thumb {
-    background: gray;
-}
-
-/* this will take the remaining height */
-#reviews-section {
-    height: 55vh;
-    background-color: cadetblue;
-    display: flex;
-    justify-content: center;
-    overflow-y: auto;
+    background: var(--dark-bg);
 }
 
 #reviews-container {
-    width: 70%;
+    height: 95%;
+    width: 60%;
+}
+
+#no-review-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#no-review {
+    background-color: var(--main-bg);
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid var(--main-border);
+    color: var(--main-font);
+}
+
+
+#validation-feedback-textarea {
+    text-align: end;
+    margin-top: -135px;
+    margin-bottom: 122px;
+}
+
+#other-title {
+    height: 8vh;
+    min-height: 8vh;
+    border-bottom: 3px solid var(--dark-border);
+    padding-top: 13px;
+    background-color: var(--dark-bg);
+}
+
+#other-games-container {
+    height: 45vh;
+    min-height: 45vh;
+}
+
+#other-games-box {
+    height: 43vh;
+    min-height: 43vh;
+    width: 95%;
+}
+
+.card {
+    background-color: var(--main-bg);
+}
+
+.card-header {
+    background-color: var(--dark-bg);
+    color: var(--logo-font);
+}
+
+/* Edit Game */
+#edit-game-container {
+    height: 94vh;
+    min-height: 94vh;
+    width: 98%;
+    background-color: var(--light-bg);
+    border-radius: 30px; 
+    border: 3px solid var(--main-border); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-edit-form {
+    height: 80vh;
+    min-height: 80vh;
+    width: 60%;
+    background-color: var(--light-bg);
+    border-radius: 30px; 
+    border: 3px solid var(--main-border); 
+}
+
+#edit-game-row {
+    height: 100%;
 }

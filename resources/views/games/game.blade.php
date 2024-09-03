@@ -1,27 +1,32 @@
 @extends('layouts.master')
 
 @section('title')
-    GameFeast: Browse games
+GameFeast: Browse games
 @endsection
 
-
 @section('heading')
-    Browse Games
+Browse Games
 @endsection
 
 @section('content')
-    <div class="container" id="testing-container">
-        <h3 id="testing">!!!___Under Construction___!!!</h3>
-        <h1 id="testing">GAME PAGE</h1>
-        <p id="testing">This is a game page and will display all games in different layout</p>
-        @if ($games)
+<div class="container" id="testing-container">
+    <h3 id="testing">!!!___Under Construction___!!!</h3>
+    <h1 id="testing">GAME PAGE</h1>
+    <p id="testing">This is a game page and will display all games in different layout</p>
+    @if ($games)
         <ul>
             @foreach ($games as $game)
-            <li><a id="testing" href="{{url("game_profile/$game->id")}}"><u>{{$game->name}}</u></a></li>
+                <li><a id="testing" href="{{url("game_profile/$game->id")}}"><u>{{$game->name}}</u></a></li>
             @endforeach
         </ul>
-        @else
-            No game found.
-        @endif
-    </div>
+    @else
+        No game found.
+    @endif
+</div>
+@endsection
+
+@section('forms')
+<div id="form_1" class="custom_form overflow-hidden">
+    @include('forms.add_form')
+</div>
 @endsection

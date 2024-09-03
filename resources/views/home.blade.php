@@ -32,5 +32,4 @@ Home
 @else
     No game found.
 @endif
-
 @endsection

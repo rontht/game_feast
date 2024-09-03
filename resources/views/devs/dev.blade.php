@@ -24,3 +24,9 @@
         @endif  
     </div>
 @endsection
+
+@section('forms')
+<div id="form_1" class="custom_form overflow-hidden">
+    @include('forms.add_form')
+</div>
+@endsection
