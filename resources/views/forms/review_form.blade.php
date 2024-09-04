@@ -1,5 +1,5 @@
 <p class=" text-center fs-5">Write a review.</p>
-<form class="needs-validation" novalidate method="post" action="{{url("add_review_action")}}">
+<form method="post" action="{{url("add_review_action")}}">
     {{csrf_field()}}
     <input type="hidden" name="id" value="{{$game->id}}"></input>
     <div class="p-1 mb-2" id="add-input-container">
@@ -14,9 +14,7 @@
                     <label for="review-input" class="col-form-label">Username</label>
                 </div>
                 <div class="col">
-                    <input type="text" id="review-input" name="username" class="form-control" required>
-                    <div id="validation-feedback" class="invalid-feedback">Please write your comment!</div>
-                    <div id="validation-feedback" class="valid-feedback">Perfect!</div>
+                    <input type="text" id="review-input" name="username" class="form-control">
                 </div>
             @endif
         </div>
@@ -43,9 +41,7 @@
     <!-- Comment -->
     <div class="mb-2">
         <label for="comment-textarea" class="form-label">Comment</label>
-        <textarea class="form-control" required id="comment-textarea" rows="4" name="comment"></textarea>
-        <div id="validation-feedback-textarea" class="invalid-feedback">Need a username to add review!</div>
-        <div id="validation-feedback-textarea" class="valid-feedback">Perfect!</div>
+        <textarea class="form-control" id="comment-textarea" rows="4" name="comment"></textarea>
     </div>
     <!-- Button -->
     <div id="review-button">

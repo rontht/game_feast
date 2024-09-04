@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mockery\Undefined;
+
+// ___________________________________________________________________________________________________________________________ Routes
+
 
 Route::get('/', function () {
     $sql = "select * from game";
@@ -48,72 +52,6 @@ Route::get('game_profile/{game_id}/{review_id}', function ($game_id, $review_id)
     return view('games.game_profile')->with('game', $game)->with('user', $user)->with('dev', $dev)->with('reviews', $reviews)->with('devs', $devs)->with('avg_rating', $avg_rating)->with('other_games', $other_games)->with('review_to_edit', $review_to_edit)->with('dev_info', $dev_info);
 });
 
-Route::post('update_review_action', function () {
-    $comment = request("comment");
-    $rating = request("rating");
-    $posted_on = request('posted_on');
-    $game_id = request('game_id');
-    $user_id = request('user_id');
-    $id = request('id');
-
-    edit_review($comment, $rating, $posted_on, $game_id, $user_id, $id);
-    return redirect("game_profile/$game_id");
-});
-
-Route::post('add_dev_action', function () {
-    $name = request('name');
-    $about = request('about');
-    $id = add_dev($name, $about);
-    if ($id) {
-        return redirect("dev_profile/$id");
-    } else {
-        die("Error while adding game.");
-    }
-});
-
-Route::post('add_game_action', function () {
-    $name = request('name');
-    $release_date = request('release_date');
-    $about = request('about');
-    $tag = request('tag');
-    $dev_id = request('dev_id');
-    $price = request('price');
-    if ($price == "0") {
-        $price = "Free";
-    }
-
-    // match username and return user_id
-    $username = request('username');
-    $user_id = match_username($username);
-    add_session($username);
-
-    $id = add_game($name, $release_date, $about, $tag, $price, $dev_id, $user_id);
-    if ($id) {
-        return redirect("game_profile/$id");
-    } else {
-        die("Error while adding game.");
-    }
-});
-
-Route::post('add_review_action', function () {
-    $comment = request("comment");
-    $rating = request("rating");
-    $game_id = request('id');
-
-    // getting current date
-    $date_string = now()->toDateTimeString();
-    $date_array = explode(' ', $date_string);
-    $posted_on = $date_array[0];
-
-    // match username and return user_id
-    $username = request('username');
-    $user_id = match_username($username);
-    add_session($username);
-
-    add_review($comment, $rating, $posted_on, $game_id, $user_id);
-    return redirect("game_profile/$game_id");
-});
-
 Route::get('dev', function () {
     $sql = "select * from dev";
     $devs = DB::select($sql);
@@ -129,45 +67,163 @@ Route::get('dev_profile/{id}', function ($id) {
     return view('devs.dev_profile')->with('dev', $dev)->with('games', $games)->with('devs', $devs)->with('avg_rating', $avg_rating);
 });
 
-Route::get('log_out', function () {
-    Session::forget('name');
-    return Redirect::back();
+
+// ___________________________________________________________________________________________________________________________ Actions
+
+
+Route::post('add_dev_action', function () {
+    // validate name
+    $name = request('name');
+    $name = validate_required($name);
+    $name = validate_name($name);
+
+    // no validation required
+    $about = request('about');
+    
+    // add to database
+    $id = add_dev($name, $about);
+    if ($id) {
+        return redirect("dev_profile/$id");
+    } else {
+        die("Error while adding game.");
+    }
+});
+
+Route::post('add_game_action', function () {
+    // validate name
+    $name = request('name');
+    $name = validate_required($name);
+    $name = validate_name($name);
+
+    // validate required fields
+    $release_date = request('release_date');
+    $release_date = validate_required($release_date);
+    $tag = request('tag');
+    $tag = validate_required($tag);
+    
+    // no validation required
+    $about = request('about');
+    $price = request('price');
+    $dev_id = request('dev_id');
+    if ($price == "0") {
+        $price = "Free";
+    }
+
+    // validate and match username and then return user_id
+    $username = request('username');
+    $username = validate_required($username);
+    $username = validate_name($username);
+    $user_id = match_username($username);
+
+    // check if session already have username
+    add_session($username);
+
+    // add to database
+    $id = add_game($name, $release_date, $about, $tag, $price, $dev_id, $user_id);
+    if ($id) {
+        return redirect("game_profile/$id");
+    } else {
+        die("Error while adding game.");
+    }
+});
+
+Route::post('add_review_action', function () {
+    // no validation required
+    $comment = request("comment");
+    $rating = request("rating");
+    $game_id = request('id');
+
+    // getting current date
+    $date_string = now()->toDateTimeString();
+    $date_array = explode(' ', $date_string);
+    $posted_on = $date_array[0];
+
+    // validate and match username and then return user_id
+    $username = request('username');
+    $username = validate_required($username);
+    $username = validate_name($username);
+    $user_id = match_username($username);
+
+    // check if session already have username
+    add_session($username);
+
+    // add to database
+    add_review($comment, $rating, $posted_on, $game_id, $user_id);
+    return redirect("game_profile/$game_id");
 });
 
 Route::post('edit_game_action', function () {
-    $id = request('id');
+    // validate name
     $name = request('name');
+    $name = validate_required($name);
+    $name = validate_name($name);
+
+    // validate required
     $release_date = request('release_date');
-    $about = request('about');
+    $release_date = validate_required($release_date);
     $tag = request('tag');
+    $tag = validate_required($tag);
+    
+    // no validation required
+    $id = request('id');
+    $dev_id = request('dev_id');
+    $user_id = request('user_id');
+    $about = request('about');
     $price = request('price');
     if ($price == "0") {
         $price = "Free";
     }
-    $dev_id = request('dev_id');
-    $user_id = request('user_id');
 
+    // update the database
     edit_game($id, $name, $release_date, $about, $tag, $price, $user_id, $dev_id);
     return redirect("game_profile/$id");
 });
 
-Route::post('edit_dev_action', function() {
-    $id = request('id');
+Route::post('edit_dev_action', function () {
+    // validate name
     $name = request('name');
+    $name = validate_required($name);
+    $name = validate_name($name);
+
+    // no validation required
+    $id = request('id');
     $about = request('about');
 
+    // update the database
     edit_dev($id, $name, $about);
     return redirect("dev_profile/$id");
 });
 
+Route::post('edit_review_action', function () {
+    // validate required
+    $comment = request("comment");
+    $comment = validate_required($comment);
+
+    // no validation requried
+    $rating = request("rating");
+    $posted_on = request('posted_on');
+    $game_id = request('game_id');
+    $user_id = request('user_id');
+    $id = request('id');
+
+    edit_review($comment, $rating, $posted_on, $game_id, $user_id, $id);
+    return redirect("game_profile/$game_id");
+});
+
 Route::get('delete_game/{id}', function ($id) {
+    // delete from database
     delete_game($id);
     return redirect("/");
 });
 
-Route::post('edit_review_action', function () {
-
+Route::get('log_out', function () {
+    // forget username from session
+    Session::forget('name');
+    return Redirect::back();
 });
+
+
+// ___________________________________________________________________________________________________________________________ Functions
 
 
 // Return game data by game id, used by game_profile to display
@@ -382,7 +438,45 @@ function edit_review($comment, $rating, $posted_on, $game_id, $user_id, $id)
 }
 
 // update a dev's attributes to the database, used by edit_dev_form at submission
-function edit_dev($id, $name, $about) {
+function edit_dev($id, $name, $about)
+{
     $sql = "update dev set name=?, about=? where id=?";
     DB::update($sql, array($name, $about, $id));
+}
+
+// validate the names and return them, used by the forms
+function validate_name($name)
+{
+    // check length of the name
+    if (strlen($name) > 2) {
+        // check special characters
+        if (!preg_match('/[-_+"]/', $name)) {
+            // check numbers in characters
+            if (preg_match('/[0-9]+/', $name)) {
+                //take out all numbers, show warning and return
+                $validated_name = preg_replace("/[0-9]+/", '', $name);
+                return $validated_name;
+            } else {
+                //no number detected and return
+                return $name;
+            }
+        } else {
+            // please exclude special characters
+            dd('please exclude special characters'); // replace this with warning triggers
+        }
+    } else {
+        // please enter longer name
+        dd('please enter longer name'); // replace this with warning triggers
+    }
+}
+
+// check if the iput is null or not and return them, used by the form input  
+function validate_required($input)
+{
+    if ($input != null) {
+        return $input;
+    } else {
+        // please enter something
+        dd('this field is required.'); // replace this with warning triggers
+    }
 }

@@ -1,9 +1,10 @@
 <p class=" text-center fs-5">Editing a review.</p>
-<form class="needs-validation" novalidate method="post" action="{{url("update_review_action")}}">
+<form method="post" action="{{url("edit_review_action")}}">
     {{csrf_field()}}
+    <!-- Other necessary fields -->
     <input type="hidden" name="id" value="{{$review_to_edit->id}}"></input>
     <input type="hidden" name="game_id" value="{{$review_to_edit->game_id}}"></input>
-    <input type="hidden" name="posted_on" value="{{$review_to_edit->posted_on}}"></input>
+    <input type="hidden" name="posted_on" value="{{$review_to_edit->posted_on}}"></input> <!-- original posted date will not change-->
     <input type="hidden" name="user_id" value="{{$review_to_edit->user_id}}"></input>
     <div class="p-1 mb-2" id="add-input-container">
         <div class="row g-3 align-items-center">
@@ -17,7 +18,7 @@
                     <label for="review-input" class="col-form-label">Username</label>
                 </div>
                 <div class="col">
-                    <input type="text" id="review-input" name="name" class="form-control" required>
+                    <input type="text" id="review-input" name="name" class="form-control">
                     <div id="validation-feedback" class="invalid-feedback">Please write your comment!</div>
                     <div id="validation-feedback" class="valid-feedback">Perfect!</div>
                 </div>
@@ -46,9 +47,7 @@
     <!-- Comment -->
     <div class="mb-2">
         <label for="comment-textarea" class="form-label">Comment</label>
-        <textarea class="form-control" required id="comment-textarea" rows="4" name="comment">{{$review_to_edit->comment}}</textarea>
-        <div id="validation-feedback-textarea" class="invalid-feedback">Need a username to add review!</div>
-        <div id="validation-feedback-textarea" class="valid-feedback">Perfect!</div>
+        <textarea class="form-control" id="comment-textarea" rows="4" name="comment">{{$review_to_edit->comment}}</textarea>
     </div>
     <!-- Button -->
     <div id="review-button">

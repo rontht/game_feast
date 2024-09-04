@@ -13,7 +13,7 @@
                 <li class="sidebar-item p-3" id="add-form-dropdown">
                     <div class="p-1" id="add-input-container">
                         <label>Developer Name</label>
-                        <input class="form-control" id="add-input" type="text" name="name" required>
+                        <input class="form-control" id="add-input" type="text" name="name">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Description</label>
@@ -25,7 +25,7 @@
         </form>
     </div>
     <div class="sidebar-item">
-        <form class="needs-validation" novalidate method="post" action="{{url("add_game_action")}}">
+        <form method="post" action="{{url("add_game_action")}}">
             {{csrf_field()}}
             <a href="$" class="sidebar-form has-dropdown collapsed" data-bs-toggle="collapse"
                 data-bs-target="#game-form" aria-expanded="false" aria-controls="game-form" id="add-form-link">
@@ -43,16 +43,12 @@
                                 value="{{Session::get('name')}}" hidden>
                         @else
                             <label>Username</label>
-                            <input class="form-control" id="add-input" type="text" name="username" required>
-                            <div id="validation-feedback" class="invalid-feedback">Required!</div>
-                            <div id="validation-feedback" class="valid-feedback">Perfect!</div>
+                            <input class="form-control" id="add-input" type="text" name="username">
                         @endif
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Game Name</label>
-                        <input class="form-control" id="add-input" type="text" name="name" required>
-                        <div id="validation-feedback" class="invalid-feedback">Required!</div>
-                        <div id="validation-feedback" class="valid-feedback">Perfect!</div>
+                        <input class="form-control" id="add-input" type="text" name="name">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Developer</label>
@@ -63,26 +59,19 @@
                                 <option value="{{$dev->id}}" id="dev-options">{{$dev->name}}</option>
                             @endforeach
                         </select>
-                        <div id="validation-feedback-select" class="valid-feedback">Perfect!</div>
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Release Date</label>
-                        <input class="form-control" id="add-input" type="date" name="release_date" required>
-                        <div id="validation-feedback" class="invalid-feedback">Required!</div>
-                        <div id="validation-feedback" class="valid-feedback">Perfect!</div>
+                        <input class="form-control" id="add-input" type="date" name="release_date">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Tags</label>
-                        <input class="form-control" id="add-input" type="text" name="tag" required>
-                        <div id="validation-feedback" class="invalid-feedback">Required!</div>
-                        <div id="validation-feedback" class="valid-feedback">Perfect!</div>
+                        <input class="form-control" id="add-input" type="text" name="tag">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Price in AUD</label>
                         <input class="form-control" type="number" id="price-input" min="0" step="0.01" data-bind="value:price-input"
                             name="price" value="0" />
-                        <div id="validation-feedback" class="invalid-feedback">Please enter a valid price.</div>
-                        <div id="validation-feedback" class="valid-feedback">Perfect!</div>
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Description</label>

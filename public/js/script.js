@@ -27,34 +27,13 @@ function showForm(formNum) {
     }
     // Find the selected form
     const selected_form = document.getElementById(id);
-    if (selected_form.classList.contains('display')) {
-        // Just hide all forms
-        document.querySelectorAll('.custom_form').forEach(card => card.classList.remove('display'));
+    if ( selected_form.classList.contains('display')) {
+        // Just hide all forms if the forms are already opened
+        document.querySelectorAll('.custom_form').forEach(form => form.classList.remove('display'));
     } else {
-        // Hide all forms
-        document.querySelectorAll('.custom_form').forEach(card => card.classList.remove('display'));
-        // Show the selected form
+        // Hide all forms first
+        document.querySelectorAll('.custom_form').forEach(form => form.classList.remove('display'));
+        // Then show the selected form
         document.getElementById(id).classList.toggle('display');
     }
 }
-
-
-// From Bootstrap
-(() => {
-    'use strict'
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
-
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-            }
-
-            form.classList.add('was-validated')
-        }, false)
-    })
-})()

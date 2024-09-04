@@ -14,7 +14,7 @@
                     <input class="form-control" type="text" name="id" hidden value="{{$dev->id}}">
                     <div class="p-1" id="add-input-container">
                         <label>Developer Name</label>
-                        <input class="form-control" id="add-input" type="text" name="name" required value="{{$dev->name}}">
+                        <input class="form-control" id="add-input" type="text" name="name" value="{{$dev->name}}">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Description</label>

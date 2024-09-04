@@ -9,6 +9,7 @@ Home
 @endsection
 
 @section('content')
+
 <!-- Games -->
 @if ($games)
     <div id="card-container">
@@ -25,11 +26,16 @@ Home
                         </a>
                     </div>
                 </div>
-                <!-- <a id="testing" href="{{url("game_profile/$game->id")}}"><u>{{$game->name}}</u></a> -->
             @endforeach
         </div>
     </div>
 @else
     No game found.
 @endif
+@endsection
+
+@section('forms')
+<div id="form_1" class="custom_form overflow-hidden">
+    @include('forms.add_form')
+</div>
 @endsection

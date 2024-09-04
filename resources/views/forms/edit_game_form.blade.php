@@ -1,6 +1,6 @@
 <aside id="edit-game-form">
     <div class="sidebar-item">
-        <form class="needs-validation" novalidate method="post" action="{{url("edit_game_action")}}">
+        <form method="post" action="{{url("edit_game_action")}}">
             {{csrf_field()}}
             <a href="$" class="sidebar-form has-dropdown collapsed" data-bs-toggle="collapse"
                 data-bs-target="#edit-game" aria-expanded="false" aria-controls="edit-game" id="add-form-link">
@@ -16,10 +16,7 @@
                 <li class="sidebar-item p-3" id="add-form-dropdown">
                     <div class="p-1" id="add-input-container">
                         <label>Game Name</label>
-                        <input class="form-control" id="add-input" type="text" name="name" required
-                            value="{{$game->name}}">
-                        <div id="validation-feedback" class="invalid-feedback">Required!</div>
-                        <div id="validation-feedback" class="valid-feedback">Perfect!</div>
+                        <input class="form-control" id="add-input" type="text" name="name" value="{{$game->name}}">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Developer</label>
@@ -34,28 +31,19 @@
                                 @endif
                             @endforeach
                         </select>
-                        <div id="validation-feedback-select" class="valid-feedback">Perfect!</div>
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Release Date</label>
-                        <input class="form-control" id="add-input" type="date" name="release_date" required
-                            value="{{$game->release_date}}">
-                        <div id="validation-feedback" class="invalid-feedback">Required!</div>
-                        <div id="validation-feedback" class="valid-feedback">Perfect!</div>
+                        <input class="form-control" id="add-input" type="date" name="release_date" value="{{$game->release_date}}">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Tags</label>
-                        <input class="form-control" id="add-input" type="text" name="tag" required
-                            value="{{$game->tag}}">
-                        <div id="validation-feedback" class="invalid-feedback">Required!</div>
-                        <div id="validation-feedback" class="valid-feedback">Perfect!</div>
+                        <input class="form-control" id="add-input" type="text" name="tag" value="{{$game->tag}}">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Price in AUD</label>
                         <input class="form-control" type="number" id="price-input" min="0" step="0.01"
                             data-bind="value:price-input" name="price" value="{{$game->price}}" />
-                        <div id="validation-feedback" class="invalid-feedback">Please enter a valid price.</div>
-                        <div id="validation-feedback" class="valid-feedback">Perfect!</div>
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Description</label>
