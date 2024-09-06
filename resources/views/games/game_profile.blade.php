@@ -5,7 +5,8 @@ GameFeast: {{$game->name}}
 @endsection
 
 @section('heading')
-Game Info
+<a href="{{ url()->previous() }}" id="go-back-button"><i class="lni lni-arrow-left"></i></a>
+<span>Game Info</span>
 @endsection
 
 @section('content')
@@ -17,28 +18,30 @@ Game Info
 
                 <!-- Game Details -->
                 <div class="row" id="game-detail-section">
-                    <!-- Image -->
-                    <div class="col" id="game-image-box">
-                        <div id="image-holder">
-                            <div id="image-placeholder">This is a placeholder for images.</div>
+                    <div class="col h-100" id="game-detail-col">
+                        <div id="game-detail-box">
+                            <p id="posted-by" class="m-1">Posted by {{$user->name}}</p>
+                            <h1 id="game-name" class="m-1">{{$game->name}}</h1>
+                            <a href="{{url("dev_profile/$dev->id")}}" class="m-1"
+                                id="dev-link"><u>{{$dev->name}}</u></a>
+                            <p id="game-price" class="m-1">Price: AUD {{$game->price}}</p>
+                            <p id="game-release-date" class="m-1">Release date: {{$game->release_date}}</p>
+                            <p id="game-tag" class="m-1">Tags: {{$game->tag}}</p>
+                            <div id="game-button-container">
+                                <button id="edit-game-button" type="button" onclick="showForm(2)">
+                                    <i class="lni lni-cogs pe-2"></i>update
+                                </button>
+                                <button id="delete-game-button" type="button"
+                                    onclick='window.location="{{url("delete_game/$game->id")}}"'>
+                                    <i class="lni lni-trash-can pe-2"></i>delete
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <!-- Details -->
-                    <div class="col" id="game-detail-box">
-                        <div id="name-box">
-                            <p>Posted by {{$user->name}}</p>
-                            <h1>{{$game->name}}</h1>
-                            <p>{{$game->price}}</p>
-                        </div>
-                        <div id="dev-box">
-                            <a href="{{url("dev_profile/$dev->id")}}"><u>{{$dev->name}}</u></a>
-                            <p>{{$game->release_date}}</p>
-                        </div>
-                        <div id="tag-box">
-                            <p>Tags: {{$game->tag}}</p>
-                        </div>
+                    <div class="col-7" id="game-detail-col">
                         <div id="about-box">
-                            <p>{{$game->about}}</p>
+                            <h5 class="m-0"><u>Description</u></h5>
+                            <p id="game-about">{{$game->about}}</p>
                         </div>
                     </div>
                 </div>
@@ -54,9 +57,6 @@ Game Info
                             Sorry, not enough reviews to produce overall rating.
                         </p>
                     @endif
-                    <button id="add-menu-button" type="button" onclick="showForm(2)"><i class="lni lni-cog"></i>EDIT</button>
-                    <!-- <a href="{{url("edit_game/$game->id")}}"><i class="lni lni-cog"></i>EDIT</a> -->
-                    <a href="{{url("delete_game/$game->id")}}"><i class="lni lni-trash-can"></i>DELETE</a>
                 </div>
 
                 <!-- For reviews -->
@@ -67,10 +67,16 @@ Game Info
                                 @foreach ($reviews as $review)
                                     <div class="card mb-3 container" style="width: 100%;">
                                         <div class="card-header row">
-                                            <p class="col-2 m-0"><i class="lni lni-star-fill"></i> {{$review->rating}}</p>
-                                            <p class="col m-0">{{$review->reviewer}}</p>
-                                            <a href="{{url("game_profile/$game->id/$review->id")}}" class="col m-0">Edit</a>
-                                            <p class="col-4 text-end m-0">{{$review->posted_on}}</p>
+                                            <p class="col-1 m-0 p-0"><i class="lni lni-star-fill"></i> {{$review->rating}}</p>
+                                            <p class="col m-0 p-0">{{$review->reviewer}}</p>
+                                            <p class="col-3 text-end p-0 m-0">{{$review->posted_on}}</p>
+                                            <div class="col-1 p-0" id="review-button-container">
+                                                <a id="review-edit-button" href="{{url("game_profile/$game->id/$review->id")}}"
+                                                    class="m-0"><i class="lni lni-cog"></i></a>
+                                                <a id="review-delete-button"
+                                                    href="{{url("delete_review/$game->id/$review->id")}}" class="m-0"><i
+                                                        class="lni lni-cross-circle"></i></i></a>
+                                            </div>
                                         </div>
                                         <div class="card-body">
                                             <span>{{$review->comment}}</span>
@@ -93,7 +99,7 @@ Game Info
 
         <!-- Section 2 -->
         <div class="col-4">
-            <div class="container" id="game-layout">
+            <div class="container" id="game-layout" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
                 <!-- Review Form -->
                 <div class="row p-2" id="review-form-section"">
                 @isset($review_to_edit)
@@ -104,28 +110,28 @@ Game Info
                 </div>
                 <div class=" row" id="other-section">
                     <div class="container">
-                        <div class="row" id="other-title">
-                            <p class="text-center fs-5 p-0 mt-2 text-light">
+                        <div class="row p-0" id="other-title" style="display: flex; justify-content: center; align-items: center;">
+                            <span class="p-0 m-0 text-light" style="text-align: center;">
                                 <i class="lni lni-arrow-down"></i>
                                 Other games from this developer
                                 <i class="lni lni-arrow-down"></i>
-                            </p>
+                            </span>
                         </div>
                         <div class="row" id="other-games-container">
                             @if ($other_games)
-                                <div class="mx-auto p-0 overflow-y-auto" id="other-games-box">
+                                <div class="p-0 overflow-y-auto overflow-x-hidden" id="other-games-box">
                                     @foreach ($other_games as $other_game)
-                                        <div class="card m-auto" style="width: 23rem; height: 5rem;">
+                                        <div style="width: 100%; height: 5rem;">
                                             <a href="{{url("game_profile/$other_game->id")}}">
-                                                <div class="card-header">
-                                                    <h5 class="card-title">{{$other_game->name}}</h5>
+                                            <div id="other-game-rows" class="p-2">
+                                                <div style="width: 80%; display: flex; justify-content: center; align-items: center;">
+                                                    <p class="fs-5 m-0">{{$other_game->name}}</p>
                                                 </div>
-                                                <div class="card-body">
-                                                    <p class="card-text"><i
-                                                            class="lni lni-star-fill"></i>{{$other_game->rating}}</p>
-                                                    <p class="card-text"><i class="lni lni-coin"></i>AUD {{$other_game->price}}
-                                                    </p>
+                                                <div style="display: flex; flex-direction: column; width: 20%;">
+                                                    <span><i class="lni lni-star-fill"></i>{{$other_game->rating}}</span>
+                                                    <span><i class="lni lni-coin"></i>{{$other_game->price}}</span>
                                                 </div>
+                                            </div>
                                             </a>
                                         </div>
                                     @endforeach

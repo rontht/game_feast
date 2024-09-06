@@ -9,29 +9,36 @@ Home
 @endsection
 
 @section('content')
+<!-- Try doing manual cells instead of table -->
+<div class="container overflow-y-auto p-0" id="table-container">
+    <table class="table m-0 p-0">
+        <thead table>
+            <tr>
+                <th>#</th>
+                <th>name</th>
+                <th>rating</th>
+                <th>num of reviews</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ($games)
+                <a>
+                    @foreach ($games as $game)
+                        <tr>
+                            <td>{{$game->id}}</td>
+                            <td>{{$game->name}}</td>
+                            <td>{{$game->id}}</td>
+                            <td>{{$game->id}}</td>
+                        </tr>
+                    @endforeach
+                </a>
+            @else
+                Sorry, no game found in the database.
+            @endif
+        </tbody>
+    </table>
+</div>
 
-<!-- Games -->
-@if ($games)
-    <div id="card-container">
-        <div class="row" id="card-holder">
-            @foreach ($games as $game)
-                <div class="col-2">
-                    <div class="card" style="width: 10rem; height: 10rem; margin: 10px 0;">
-                        <!-- <img src="..." class="card-img-top" alt="..."> -->
-                        <a href="{{url("game_profile/$game->id")}}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{$game->name}}</h5>
-                                <p class="card-text"></p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-@else
-    No game found.
-@endif
 @endsection
 
 @section('forms')

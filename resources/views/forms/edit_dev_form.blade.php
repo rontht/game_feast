@@ -11,16 +11,18 @@
             </a>
             <ul id="edit-dev" class="sidebar-dropdown list-unstyled show collapse m-0" data-bs-parent="#edit-dev-form">
                 <li class="sidebar-item p-3" id="add-form-dropdown">
-                    <input class="form-control" type="text" name="id" hidden value="{{$dev->id}}">
+                    <input class="form-control" type="text" name="dev_id_edit" hidden value="{{$dev->id}}">
                     <div class="p-1" id="add-input-container">
-                        <label>Developer Name</label>
-                        <input class="form-control" id="add-input" type="text" name="name" value="{{$dev->name}}">
+                        <label>Developer Name <span id="required">(Required)</span></label>
+                        <input class="form-control" id="add-input" type="text" name="dev_name_edit" value="{{$dev->name}}">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Description</label>
-                        <textarea class="form-control" id="add-textarea" type="text" name="about">{{$dev->about}}</textarea>
+                        <textarea class="form-control" id="add-textarea" type="text" rows="8" name="dev_about_edit">{{$dev->about}}</textarea>
                     </div>
-                    <input id="add-button" type="submit" value="ADD">
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <input id="add-button" type="submit" value="Save Changes">
+                    </div>
                 </li>
             </ul>
         </form>

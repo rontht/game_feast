@@ -11,16 +11,16 @@
             </a>
             <ul id="edit-game" class="sidebar-dropdown show list-unstyled collapse m-0" data-bs-parent="#edit-game-form">
                 <!-- Game ID Hidden -->
-                <input class="form-control" type="text" name="user_id" hidden value="{{$game->user_id}}">
-                <input class="form-control" type="text" name="id" hidden value="{{$game->id}}">
+                <input class="form-control" type="text" name="game_id_edit" hidden value="{{$game->id}}">
+                <input class="form-control" type="text" name="game_user_id_edit" hidden value="{{$game->user_id}}">
                 <li class="sidebar-item p-3" id="add-form-dropdown">
                     <div class="p-1" id="add-input-container">
-                        <label>Game Name</label>
-                        <input class="form-control" id="add-input" type="text" name="name" value="{{$game->name}}">
+                        <label>Game Name <span id="required">(Required)</span></label>
+                        <input class="form-control" id="add-input" type="text" name="game_name_edit" value="{{$game->name}}">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Developer</label>
-                        <select aria-label="Developer Choices" name="dev_id" id="dev-select" class="form-control"
+                        <select aria-label="Developer Choices" name="game_dev_id_edit" id="dev-select" class="form-control"
                             onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
                             <option value="1" id="dev-options">Select one developer.</option>
                             @foreach ($devs as $dev)
@@ -33,24 +33,26 @@
                         </select>
                     </div>
                     <div class="p-1" id="add-input-container">
-                        <label>Release Date</label>
-                        <input class="form-control" id="add-input" type="date" name="release_date" value="{{$game->release_date}}">
+                        <label>Release Date <span id="required">(Required)</span></label>
+                        <input class="form-control" id="add-input" type="date" name="game_release_date_edit" value="{{$game->release_date}}">
                     </div>
                     <div class="p-1" id="add-input-container">
-                        <label>Tags</label>
-                        <input class="form-control" id="add-input" type="text" name="tag" value="{{$game->tag}}">
+                        <label>Tags <span id="required">(Required)</span></label>
+                        <input class="form-control" id="add-input" type="text" name="game_tag_edit" value="{{$game->tag}}">
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Price in AUD</label>
-                        <input class="form-control" type="number" id="price-input" min="0" step="0.01"
-                            data-bind="value:price-input" name="price" value="{{$game->price}}" />
+                        <input class="form-control" type="text" id="price-input" min="0" step="0.01"
+                            data-bind="value:price-input" name="game_price_edit" value="{{$game->price}}" />
                     </div>
                     <div class="p-1" id="add-input-container">
                         <label>Description</label>
-                        <textarea class="form-control" id="add-textarea" type="text"
-                            name="about">{{$game->about}}</textarea>
+                        <textarea class="form-control" id="add-textarea" type="text" rows="5" 
+                            name="game_about_edit">{{$game->about}}</textarea>
                     </div>
-                    <input id="add-button" type="submit" value="Save Changes">
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <input id="add-button" type="submit" value="Save Changes">
+                    </div>
                 </li>
             </ul>
         </form>

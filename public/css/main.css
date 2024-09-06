@@ -13,6 +13,7 @@
     --dark-border: #2a2d49;
 
     --neon-color: #7C00FE;
+    --hover-buttons: #bcc5e9;
 }
 
 ::after,
@@ -274,13 +275,18 @@ a.sidebar-link:hover {
     height: 100px;
 }
 
-#add-textarea {
-    height: 20vh;
-}
-
 /* Add game button */
 #add-button {
-    width: 100%;
+    height: 50px;
+    width: 50%;
+    color: var(--main-font);
+    background-color: var(--main-bg);
+    border: 3px solid var(--dark-border);
+    border-radius: 30px;
+}
+
+#add-button:hover {
+    background-color: var(--hover-buttons);
 }
 
 #add-form-dropdown {
@@ -324,14 +330,20 @@ a#add-form-link:hover {
 
 #add-button-container {
     height: 100%;
+    margin-right: 20px;
     /* background-color: var(--dark-bg); */
-    /* text-align: center; */
-    max-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50px;
     height: 50px;
+    font-size: 40px;
+    border-radius: 50px;
+    background-color: var(--main-bg);
 }
 
 #add-button-container:hover {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: var(--hover-buttons);
 }
 
 #add-button-container button {
@@ -355,24 +367,28 @@ a#add-form-link:hover {
 }
 
 /* _________________________________________________________ Home */
-#card-container {
-    margin: 0 10px;
-    border-radius: 30px; 
+#table-container {
+    width: 95%;
+    height: 60vh;
+    min-height: 60vh;
     background-color: var(--light-bg);
     border: 3px solid var(--main-border); 
     padding: 0.4em;
-    margin-top: 10px;
+    border-radius: 30px 30px 0 0;
 }
 
-#card-holder {
-    margin: 10px;
-    height: 70vh;
-    /* background-color: black; */
-    overflow-y: auto;
+#table-container thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--dark-bg);
+    color: var(--logo-font);
 }
 
-#card-holder h5 {
-    font-size: small;
+#table-container tbody td {
+    background-color: var(--main-bg);
+}
+tbody:hover, td:hover {
+    background-color: var(--hover-buttons);
 }
 
 /* _________________________________________________________ Game Profile */
@@ -384,8 +400,8 @@ a#add-form-link:hover {
 
 /* this will have fixed height */
 #game-detail-section {
-    height: 30vh;
-    min-height: 30vh;
+    height: 27vh;
+    min-height: 27vh;
 }
 
 #average-section {
@@ -399,8 +415,8 @@ a#add-form-link:hover {
 
 /* this will take the remaining height */
 #reviews-section {
-    height: 55vh;
-    min-height: 55vh;
+    height: 58vh;
+    min-height: 58vh;
     display: flex;
     justify-content: center;
 }
@@ -414,33 +430,6 @@ a#add-form-link:hover {
 #other-section {
     height: 53vh;
     min-height: 53vh;
-}
-
-#game-image-box {
-    max-width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#image-holder {
-    width: 400px;
-    height: 250px;
-    background-color: black;
-    border-radius: 10px;
-    border: 3px solid var(--main-border);
-}
-
-#image-placeholder {
-    border-radius: 5px;
-    height: 100%;
-    background-color: white;
-    color: green;
-    text-align: center;
-}
-
-#game-detail-box {
-    color: var(--main-font);
 }
 
 #review-icon,
@@ -486,7 +475,6 @@ a#add-form-link:hover {
 #other-title {
     height: 8vh;
     min-height: 8vh;
-    border-bottom: 3px solid var(--dark-border);
     padding-top: 13px;
     background-color: var(--dark-bg);
 }
@@ -497,9 +485,25 @@ a#add-form-link:hover {
 }
 
 #other-games-box {
-    height: 43vh;
-    min-height: 43vh;
-    width: 95%;
+    height: 45vh;
+    min-height: 45vh;
+    width: 100%;
+    /* border-left: 3px solid var(--dark-border);
+    border-right: 3px solid var(--dark-border);
+    border-bottom: 3px solid var(--dark-border); */
+}
+
+#other-game-rows {
+    height: 100%;
+    display: flex;
+    background-color: var(--main-bg);
+    color: var(--main-font);
+}
+
+#other-game-rows:hover {
+    background-color: var(--hover-buttons);
+    border-left: 3px solid var(--dark-bg);
+    border-right: 3px solid var(--dark-bg);
 }
 
 .card {
@@ -535,4 +539,80 @@ a#add-form-link:hover {
 
 #edit-game-row {
     height: 100%;
+}
+
+#game-detail-box {
+    color: var(--main-font);
+    /* background-color: #7C00FE; */
+    width: 90%;
+    height: auto;
+}
+
+#game-detail-col, #game-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#review-button-container {
+    margin-left: 10px;
+    text-align: right;
+}
+
+#about-box {
+    color: var(--main-font);
+    /* background-color: #A6B1E1; */
+    height: auto;
+    width: 90%;
+}
+
+#posted-by {
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+#game-about {
+    font-size: 15px;
+}
+
+#edit-game-button {
+    background-color: rgb(21, 161, 21);
+}
+
+#delete-game-button {
+    background-color: rgb(158, 13, 13);
+}
+
+#edit-game-button, #delete-game-button {
+    width: 49%;
+    border-radius: 10px;
+    color: var(--logo-font);
+    font-size: 13px;
+}
+
+#dev-link {
+    color: #000000;
+    font-style: italic;
+}
+
+#review-edit-button {
+    color: rgb(98, 255, 98);
+}
+
+#review-delete-button {
+    color: rgb(253, 100, 100);
+}
+
+#go-back-button {
+    color: var(--logo-font);
+    font-size: 30px;
+}
+
+#alert {
+    width: 50%;
+    font-size: small;
+}
+
+#required {
+    color: red;
 }

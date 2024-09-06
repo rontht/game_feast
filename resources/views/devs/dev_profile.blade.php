@@ -5,7 +5,8 @@ GameFeast: {{$dev->name}}
 @endsection
 
 @section('heading')
-{{$dev->name}}
+<a href="{{ url()->previous() }}" id="go-back-button"><i class="lni lni-arrow-left"></i></a>
+<span>Developer Info</span>
 @endsection
 
 @section('content')
@@ -14,7 +15,18 @@ GameFeast: {{$dev->name}}
     <a href="{{ url()->previous() }}">Go Previous</a>
     <h1 id="testing">{{$dev->name}} {{$avg_rating}}</h1>
     <p id="testing">{{$dev->about}}</p>
-    <button id="update-dev-button" onclick="showForm(3)" type="button"><i class="lni lni-plus"></i>UPDATE</button>
+    @if ($dev->id === 1)
+        <button id="update-dev-button" onclick="showForm(3)" type="button" disabled><i
+                class="lni lni-cogs"></i>UPDATE</button>
+        <button id="delete-dev-button" type="button" onclick='window.location="{{url("delete_dev/$dev->id")}}"' disabled>
+            <i class="lni lni-trash-can pe-2"></i>DELETE
+        </button>
+    @else
+        <button id="update-dev-button" onclick="showForm(3)" type="button"><i class="lni lni-cogs"></i>UPDATE</button>
+        <button id="delete-dev-button" type="button" onclick='window.location="{{url("delete_dev/$dev->id")}}"'>
+            <i class="lni lni-trash-can pe-2"></i>DELETE
+        </button>
+    @endif
     @if ($games)
         <ul>
             @foreach ($games as $game)
