@@ -16,14 +16,14 @@ GameFeast: {{$game->name}}
         <div class="col pe-0">
             <div class="container" id="game-layout">
 
-                <!-- Game Details -->
+                <!-- Game Details Section -->
                 <div class="row" id="game-detail-section">
                     <div class="col h-100" id="game-detail-col">
                         <div id="game-detail-box">
                             <p id="posted-by" class="m-1">Posted by {{$user->name}}</p>
                             <h1 id="game-name" class="m-1">{{$game->name}}</h1>
                             <a href="{{url("dev_profile/$dev->id")}}" class="m-1"
-                                id="dev-link"><u>{{$dev->name}}</u></a>
+                                id="dev-link">by <u>{{$dev->name}}</u></a>
                             <p id="game-price" class="m-1">Price: AUD {{$game->price}}</p>
                             <p id="game-release-date" class="m-1">Release date: {{$game->release_date}}</p>
                             <p id="game-tag" class="m-1">Tags: {{$game->tag}}</p>
@@ -46,7 +46,7 @@ GameFeast: {{$game->name}}
                     </div>
                 </div>
 
-                <!-- Game Average Rating -->
+                <!-- Game Average Rating Section -->
                 <div class="row" id="average-section">
                     @if ($reviews)
                         <p class="fs-1 text-center p-0 text-light">
@@ -59,7 +59,7 @@ GameFeast: {{$game->name}}
                     @endif
                 </div>
 
-                <!-- For reviews -->
+                <!-- Reviews Section -->
                 <div class="row" id="reviews-section">
                     <div id="reviews-container" class="mx-auto overflow-y-auto">
                         @if ($reviews)
@@ -68,7 +68,7 @@ GameFeast: {{$game->name}}
                                     <div class="card mb-3 container" style="width: 100%;">
                                         <div class="card-header row">
                                             <p class="col-1 m-0 p-0"><i class="lni lni-star-fill"></i> {{$review->rating}}</p>
-                                            <p class="col m-0 p-0">{{$review->reviewer}}</p>
+                                            <p class="col ms-3 mb-0 p-0">{{$review->reviewer}}</p>
                                             <p class="col-3 text-end p-0 m-0">{{$review->posted_on}}</p>
                                             <div class="col-1 p-0" id="review-button-container">
                                                 <a id="review-edit-button" href="{{url("game_profile/$game->id/$review->id")}}"
@@ -79,7 +79,7 @@ GameFeast: {{$game->name}}
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <span>{{$review->comment}}</span>
+                                            <span style="white-space: pre-line">{{$review->comment}}</span>
                                         </div>
                                     </div>
                                 @endforeach
@@ -88,7 +88,7 @@ GameFeast: {{$game->name}}
                             <div class="container h-100" id="no-review-box">
                                 <div id="no-review" class="">
                                     <i class="lni lni-comments mx-1 fs-1"></i>
-                                    <span class="fs-1">No Review found.</span>
+                                    <span class="fs-1">No review yet!</span>
                                 </div>
                             </div>
                         @endif
@@ -100,7 +100,7 @@ GameFeast: {{$game->name}}
         <!-- Section 2 -->
         <div class="col-4">
             <div class="container" id="game-layout" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
-                <!-- Review Form -->
+                <!-- Review Form Section-->
                 <div class="row p-2" id="review-form-section"">
                 @isset($review_to_edit)
                     @include('forms.review_edit_form')
@@ -108,6 +108,8 @@ GameFeast: {{$game->name}}
                     @include('forms.review_form')
                 @endisset
                 </div>
+
+                <!-- Other Section -->
                 <div class=" row" id="other-section">
                     <div class="container">
                         <div class="row p-0" id="other-title" style="display: flex; justify-content: center; align-items: center;">
@@ -117,6 +119,7 @@ GameFeast: {{$game->name}}
                                 <i class="lni lni-arrow-down"></i>
                             </span>
                         </div>
+                        <!-- Show other games from the same developer -->
                         <div class="row" id="other-games-container">
                             @if ($other_games)
                                 <div class="p-0 overflow-y-auto overflow-x-hidden" id="other-games-box">

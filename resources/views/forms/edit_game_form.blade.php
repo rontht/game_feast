@@ -13,7 +13,7 @@
                 <!-- Game ID Hidden -->
                 <input class="form-control" type="text" name="game_id_edit" hidden value="{{$game->id}}">
                 <input class="form-control" type="text" name="game_user_id_edit" hidden value="{{$game->user_id}}">
-                <li class="sidebar-item p-3" id="add-form-dropdown">
+                <li class="sidebar-item p-2" id="add-form-dropdown">
                     <div class="p-1" id="add-input-container">
                         <label>Game Name <span id="required">(Required)</span></label>
                         <input class="form-control" id="add-input" type="text" name="game_name_edit" value="{{$game->name}}">

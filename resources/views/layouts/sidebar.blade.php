@@ -21,7 +21,7 @@
 
         <!-- GAMEs PAGE -->
         <li class="sidebar-item">
-            <a href="{{url("game")}}" class="sidebar-link">
+            <a href="#" class="sidebar-link">
                 <i class="lni lni-game"></i>
                 <span id="sidebar-link-span">Games</span>
             </a>

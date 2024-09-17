@@ -2,25 +2,23 @@ drop table if exists user;
 create table user (
     id integer not null primary key autoincrement,
     name varchar(20) not null unique
-    -- user_image try add this one
 );
 
 drop table if exists dev;
 create table dev (
     id integer not null primary key autoincrement,
-    name varchar(20) not null,
+    name varchar(20) not null unique,
     about text default ''
-    -- dev_image try add this one
 );
 
 drop table if exists game;
 create table game (
     id integer not null primary key autoincrement,
     name varchar(20)  not null,
-    release_date date,
+    release_date date not null,
     about text default '',
-    tag text default '',
-    price varchar(10),
+    tag text not null,
+    price varchar(10) default 'Free',
     dev_id integer not null references dev(id),
     user_id integer not null references user(id)
 );
@@ -28,9 +26,9 @@ create table game (
 drop table if exists review;
 create table review (
     id integer not null primary key autoincrement,
-    comment text default '',
+    posted_on date not null,
+    comment text not null,
     rating integer,
-    posted_on date,
     game_id integer not null references game(id),
     user_id integer not null references user(id)
 );
@@ -41,6 +39,7 @@ insert into user values (null, "John");
 insert into user values (null, "Rory");
 insert into user values (null, "Aiden");
 insert into user values (null, "Caroline");
+insert into user values (null, "Georgie");
 
 -- DEVs
 insert into dev values (null, "Unknown Developer", "The following games are added without developer information. Feel free to edit them with correct developer.");
@@ -67,72 +66,77 @@ insert into game values(null, "Total War: Three Kingdoms", "2019-05-24", "Total 
 
 -- REVIEWs
 -- Divinity OS
-insert into review values(null, "it's alright", 6, "2016-08-22", 1, 4);
-insert into review values(null, "meh", 5, "2016-08-22", 1, 5);
-insert into review values(null, "I had fun", 7, "2016-08-22", 1, 3);
-insert into review values(null, "good game", 9, "2016-08-22", 1, 2);
+insert into review values(null, "2024-04-19", "One of the most rewarding RPGs in years", 8, 1, 4);
+insert into review values(null, "2024-04-19", "PC Game of the Year 2014", 9, 1, 5);
+insert into review values(null, "2024-04-19", "As a fan of RPG's, Divinity: Original Sin really ticks (almost) all of the boxes of what constitutes a great game.", 9, 1, 3);
+insert into review values(null, "2024-04-19", "The game is very interesting in term of gameplay but what more amazing is the engine itself. This game demonstrated how powerful the engine is, you pretty much have freedom in every corner from the quests, combat to interaction with NPCs.", 8, 1, 2);
 
 -- TW Shogun 2
-insert into review values(null, "it's okay", 5, "2016-08-22", 2, 2);
-insert into review values(null, "it's a game of all time", 6, "2016-08-22", 2, 4);
-insert into review values(null, "pretty bad", 4, "2016-08-22", 2, 3);
+insert into review values(null, "2024-04-19", "Quite decent, but the Fall of the Samurai DLC is the best part of this game, due to the game's engine being made for musket warfare, not hand-to-hand combat.", 8, 2, 2);
+insert into review values(null, "2024-04-19", "Shogun 2: Total War is hands down one of the best strategy games I've ever played. It's a great example of when a game is designed with pure, rewarding gameplay in mind.", 9, 2, 4);
+insert into review values(null, "2024-04-19", "I bought with the intent of playing a campaign with a friend. After multiple hours put into the campaign, we would always come to a place where we had to quit because the files are corrupt.", 7, 2, 3);
 
 -- DST
-insert into review values(null, "too expensive", 4, "2016-08-22", 3, 2);
-insert into review values(null, "I enjoyed it", 8, "2016-08-22", 3, 4);
-insert into review values(null, "it got better", 7, "2016-08-22", 3, 3);
+insert into review values(null, "2024-04-19", "It's a highly difficult survival game. It's hard enough just to survive hunger. We'd somehow managed to adapt to the harsh winter we'd been experiencing for the first time, and the shock we felt when a one-eyed monster destroyed our bustling base was incredible. My friend and I were silent for a while, feeling helpless.", 9, 3, 2);
+insert into review values(null, "2024-04-19", "DST is a fun casual co=op, great for playing alone or with a group. Sometime it can be a little buggy but a quick reinstall will fix that.", 9, 3, 4);
+insert into review values(null, "2024-04-19", "This game is cool. That's it. Stop reading and play already.", 10, 3, 3);
 
 -- TW WH3
-insert into review values(null, "masterpiece", 10, "2016-08-22", 4, 3);
-insert into review values(null, "lovely", 9, "2016-08-22", 4, 5);
-insert into review values(null, "love it", 9, "2016-08-22", 4, 4);
+insert into review values(null, "2024-04-19", "The idea of playing Warhammer 3 total war is more appealing than actually playing it due to how much of it is (still) broken.", 6, 4, 3);
+insert into review values(null, "2024-04-19", "This is the single most exploitative, anti consumer game I have ever played. You can see that there is 300 dollars or something like that of dlc but they don’t tell you about the various random hoops “free” dlc will have you jump through to get them, and ones that are marked as free in the battlemode roster page are often not.", 4, 4, 5);
+insert into review values(null, "2024-04-19", "I go to sleep after this turn", 9, 4, 4);
+insert into review values(null, "2024-04-19", "It's quite difficult finding an actual review on TW:Warhammer 3 as the Steam page is taken up by CA's exploitative DLC policies, their dumb forum comments and the White Knights trying to defend everything.", 8, 4, 6);
 
 -- Oxygen Not Included
-insert into review values(null, "all I ever want and more", 10, "2016-08-22", 5, 2);
-insert into review values(null, "I love this game", 8, "2016-08-22", 5, 4);
-insert into review values(null, "Klei does not miss", 9, "2016-08-22", 5, 5);
+insert into review values(null, "2024-04-19", "The best colony sim I've ever played. The art and sound design are fantastic. The dupes are cute even when they're dying. Once you get over the learning cliff, the game is less of a crisis management simulator and more of a fun and mostly relaxing problem solver.", 9, 5, 2);
+insert into review values(null, "2024-04-19", "A good game to sharpen your problem solving skills.", 9, 5, 4);
+insert into review values(null, "2024-04-19", "I have been really enjoying this game, and trying to fix every mistake that I have made throughout it. I really like the design and physics of everything.", 8, 5, 5);
 
 -- Dota
-insert into review values(null, "toxic", 7, "2016-08-22", 6, 5);
-insert into review values(null, "I keep coming back, help", 9, "2016-08-22", 6, 3);
-insert into review values(null, "I hate u valve", 6, "2016-08-22", 6, 4);
+insert into review values(null, "2024-04-19", "I don't even know why I'm still playing", 9, 6, 5);
+insert into review values(null, "2024-04-19", "the game has evolved so much that it has so much depth to it, and its a very good example of skill caps or brackets where its enjoyable at so many levels.", 8, 6, 3);
+insert into review values(null, "2024-04-19", "I love the game, don't get me wrong, but save yourself the emotional pain. I'm already in too deep but there's still time for you to get out.", 7, 6, 4);
+insert into review values(null, "2024-04-19", "You can find ur inner peace here :)", 9, 6, 2);
+insert into review values(null, "2024-04-19", "Before you start this game think really hard at this. Do you enjoy toxicity every day in your life?", 6, 6, 6);
 
 -- CS2
-insert into review values(null, "good old days", 9, "2016-08-22", 7, 2);
-insert into review values(null, "miss those", 8, "2016-08-22", 7, 3);
-insert into review values(null, "can you please do CS3?", 8, "2016-08-22", 7, 4);
+insert into review values(null, "2024-04-19", "this is the worst game I've ever played. It makes me want to pull my hair out, punch my computer, set it on fire, sell all of my belongings, move to Ibiza, and live the rest of my life with the mere memories of its horrors. anyways 10/10 would recommend :D", 10, 7, 2);
+insert into review values(null, "2024-04-19", "So... In 9 out of 10 games you have a hacker either on the team, on the opposing team or on both teams. They can do whatever they want. Wallhack, spinning, rapidfire... It doesn't matter.", 6, 7, 3);
+insert into review values(null, "2024-04-19", "It's fun. A lot of cheaters still and some of the most toxic players I have ever encountered but I have also met some awesome people who have become good friends.", 7, 7, 4);
 
 -- Divinity OS 2
-insert into review values(null, "good old days", 9, "2016-08-22", 7, 2);
-insert into review values(null, "miss those", 8, "2016-08-22", 7, 3);
-insert into review values(null, "can you please do CS3?", 8, "2016-08-22", 7, 4);
+insert into review values(null, "2024-04-19", "I was expecting a 40-60 hour adventure like the first Original Sin. 120 hours later, the credits roll and what a ride it's been.", 9, 8, 2);
+insert into review values(null, "2024-04-19", "I think I am near the end of the game now, and man it has been an amazing journey and I only wish there was more and the last act wasn't rushed.", 7, 8, 3);
 
 -- TW Pharaoh
-insert into review values(null, "good old days", 9, "2016-08-22", 7, 2);
-insert into review values(null, "miss those", 8, "2016-08-22", 7, 3);
-insert into review values(null, "can you please do CS3?", 8, "2016-08-22", 7, 4);
+insert into review values(null, "2024-04-19", "Worst total war game out of the lot. small game very basic units all petty much look the same. The whole game looks and feels just MEH. first time iv ever had to give a total war game a negative review.", 2, 9, 2);
+insert into review values(null, "2024-04-19", "Super irritated with this game. I bought this game just after release as I own most the total war games and love playing the multiplayer with my husband.", 3, 9, 5);
 
 -- BG3
-insert into review values(null, "good old days", 9, "2016-08-22", 7, 2);
-insert into review values(null, "miss those", 8, "2016-08-22", 7, 3);
-insert into review values(null, "can you please do CS3?", 8, "2016-08-22", 7, 4);
+insert into review values(null, "2024-04-19", "A lot of words were said by other speakers, I will be brief: this is not the game of the year. This is the game of the decade", 10, 10, 4);
+insert into review values(null, "2024-04-19", "I usually shun major AAA games in favor of small indie publishers. So when this game first came out and got a lot of attention, I ignored it, thinking it was overrated. Eventually, my curiosity got the best of me and I decided to give Baldur's Gate 3 a try. Boy, have I been missing out.", 9, 10, 5);
+insert into review values(null, "2024-04-19", "What a game. I've done 7 playthroughs of this game, and learned something new each time, even when I thought I had learned it all.", 9, 10, 2);
+insert into review values(null, "2024-04-19", "Cheaper than a crack addiction but somehow even more all-consuming than one!", 10, 10, 3);
+insert into review values(null, "2024-04-19", "One of the best games I've ever played. Perfectly portrays D&D and in itself, with scenario, feeling, musics, graphics, characters. Its a captivating masterpiece. Proud to be a supporter on Early-Access.", 10, 10, 6);
 
 -- TW Attila
-insert into review values(null, "good old days", 9, "2016-08-22", 7, 2);
-insert into review values(null, "miss those", 8, "2016-08-22", 7, 3);
-insert into review values(null, "can you please do CS3?", 8, "2016-08-22", 7, 4);
+insert into review values(null, "2024-04-19", "My favourite of the Total war series and the modding community is unbelievable as well adding so much replay value. Love it", 9, 11, 2);
+insert into review values(null, "2024-04-19", "nice to play enjoy the dlc campains realy good but its only good with mods tbh with ofc haveing lots of bugs and problems", 7, 11, 5);
+insert into review values(null, "2024-04-19", "Excellent game, high replay value, endless set ups, legendary achievements not available in other total war games (why, tho?), Mediterranean theatre. Good stuff creative assembly, stick to this.", 9, 11, 4);
+insert into review values(null, "2024-04-19", "I just don't feel like playing Total War: Attila after beating Total War: Rome II. Why? Because it is basically the same game.", 5, 11, 6);
 
 -- Rotwood
-insert into review values(null, "good old days", 9, "2016-08-22", 7, 2);
-insert into review values(null, "miss those", 8, "2016-08-22", 7, 3);
-insert into review values(null, "can you please do CS3?", 8, "2016-08-22", 7, 4);
+insert into review values(null, "2024-04-19", "Game is great, don't listen to some idiots that don't know what EARLY ACCESS means and saying that this game lacks content , like yeah?!", 8, 12, 2);
+insert into review values(null, "2024-04-19", "At first, I wasn't sure about Rotwood. But, the more I played it, the more I got hooked on it. The art design is incredible, and the gameplay is fun and in-depth.", 9, 12, 3);
+insert into review values(null, "2024-04-19", "I wish there was a 'Maybe' option for this. This game is good, but currently it is grindy.", 6, 12, 6);
 
 -- Portal 2
-insert into review values(null, "good old days", 9, "2016-08-22", 7, 2);
-insert into review values(null, "miss those", 8, "2016-08-22", 7, 3);
-insert into review values(null, "can you please do CS3?", 8, "2016-08-22", 7, 4);
+insert into review values(null, "2024-04-19", "Portal 2 is one of the best puzzle games of all time. With creative puzzles, interesting plot, and graphics that still hold up to this game, I definitely recommend it.", 9, 13, 2);
+insert into review values(null, "2024-04-19", "Hilarious game. I played with a friend on discord and I can't remember the last time I laughed so much going through a game.", 8, 13, 5);
+insert into review values(null, "2024-04-19", "one of the greatest sequals and one of the best games ever. the only bad thing is replayability which it has many mods so you could just download mods and its fun again", 10, 13, 3);
 
 -- TW 3K
-insert into review values(null, "good old days", 9, "2016-08-22", 7, 2);
-insert into review values(null, "miss those", 8, "2016-08-22", 7, 3);
-insert into review values(null, "can you please do CS3?", 8, "2016-08-22", 7, 4);
+insert into review values(null, "2024-04-19", "Simply put, the game has a lot of issues like bugs and even crashes that the developers apparently knew about and abandoned ship before they fixed them so you have to rely on community made mods to fix them, which are unstable at best.", 5, 14, 6);
+insert into review values(null, "2024-04-19", "Kinda bs a Three Kingdoms game but has no three kingdoms scenario, kinda bs mod devs saved CA's ass again as well.", 2, 14, 4);
+insert into review values(null, "2024-04-19", "with mods, as the game support has stopped but the mods make it a 20/10 game", 7, 14, 2);
+insert into review values(null, "2024-04-19", "A great game, the building and hero management is more extensive than in any other Total War title, including Warhammer Total War.", 7, 14, 5);

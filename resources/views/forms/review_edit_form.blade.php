@@ -19,7 +19,7 @@
             </div>
             <div class="col p-0">
                 <!-- Rating Range -->
-                <input class="form-range p-0 mb-1" id="rating-range" type="range" name="review_rating_edit" min="0" max="10"
+                <input class="form-range p-0 mb-1" id="rating-range" type="range" name="review_rating_edit" min="1" max="10"
                     value="{{$review_to_edit->rating}}" onchange="updateRating(this.value);" style="color: red;">
             </div>
         </div>

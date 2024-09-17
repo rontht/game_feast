@@ -14,6 +14,11 @@
 
     --neon-color: #7C00FE;
     --hover-buttons: #bcc5e9;
+
+    --edit-button: #c76f28;
+    --edit-button2: #f5994d;
+    --delete-button: #be1e24;
+    --delete-button2: #ff4248;
 }
 
 ::after,
@@ -65,18 +70,8 @@ textarea {
     border-right: 0.2rem solid var(--neon-color);
 }
 
-#testing-container {
-    /* height: 100vh;
-    min-height: 100vh; */
-    background-color: black;
-}
-
-#testing {
-    color: rgb(0, 248, 0);
-    margin: 0;
-    padding: 0;
-}
-
+/* Credit to Silvia O'Dwyer from Codepen */
+/* https://codepen.io/silvia-odwyer/pen/RwKMOpb */
 @keyframes neon-border {
     100% {
         box-shadow:
@@ -369,37 +364,64 @@ a#add-form-link:hover {
 /* _________________________________________________________ Home */
 #table-container {
     width: 95%;
-    height: 60vh;
-    min-height: 60vh;
+    height: 54vh;
+    min-height: 54vh;
     background-color: var(--light-bg);
     border: 3px solid var(--main-border); 
     padding: 0.4em;
-    border-radius: 30px 30px 0 0;
+    border-radius: 0 0 30px 30px;
 }
 
 #table-container thead th {
     position: sticky;
     top: 0;
+    padding: 10px;
     background-color: var(--dark-bg);
     color: var(--logo-font);
 }
-
-#table-container tbody td {
-    background-color: var(--main-bg);
+table {
+    width: 100%;
+    font-size: 20px;
 }
-tbody:hover, td:hover {
-    background-color: var(--hover-buttons);
+
+table a {
+    color: var(--main-font);
+}
+
+#carousel {
+    width: 95%;
+    border-radius: 30px 30px 0 0;
+    border-top: 3px solid var(--main-border);
+    border-left: 3px solid var(--main-border);
+    border-right: 3px solid var(--main-border);
+    overflow: hidden;
+}
+
+tr:hover {
+    border-bottom: 2px solid var(--main-border);
+    background-color: var(--hover-buttons); /* Change this to your desired hover color */
+}
+
+#table-link {
+    display: block;
+    width: 100%;
+    padding: 10px;
+}
+
+#home-button {
+    color: var(--logo-font)!important; 
+    font-size: 20px;
 }
 
 /* _________________________________________________________ Game Profile */
-#game-layout {
+#game-layout, #dev-layout {
     background-color: var(--light-bg);
     border-radius: 30px; 
     border: 3px solid var(--main-border); 
 }
 
 /* this will have fixed height */
-#game-detail-section {
+#game-detail-section, #dev-detail-section {
     height: 27vh;
     min-height: 27vh;
 }
@@ -414,7 +436,7 @@ tbody:hover, td:hover {
 }
 
 /* this will take the remaining height */
-#reviews-section {
+#reviews-section, #games-section {
     height: 58vh;
     min-height: 58vh;
     display: flex;
@@ -453,18 +475,18 @@ tbody:hover, td:hover {
     background: var(--dark-bg);
 }
 
-#reviews-container {
+#reviews-container, #games-container {
     height: 95%;
     width: 60%;
 }
 
-#no-review-box {
+#no-review-box, #no-game-box {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#no-review {
+#no-review, #no-game {
     background-color: var(--main-bg);
     padding: 20px;
     border-radius: 20px;
@@ -548,7 +570,7 @@ tbody:hover, td:hover {
     height: auto;
 }
 
-#game-detail-col, #game-button-container {
+#game-detail-col, #dev-detail-col , #game-button-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -571,19 +593,20 @@ tbody:hover, td:hover {
     padding-top: 5px;
 }
 
-#game-about {
+#game-about, #dev-about {
     font-size: 15px;
+    white-space: pre-line;
 }
 
-#edit-game-button {
-    background-color: rgb(21, 161, 21);
+#edit-game-button, #edit-dev-button {
+    background-color: var(--edit-button);
 }
 
-#delete-game-button {
-    background-color: rgb(158, 13, 13);
+#delete-game-button, #delete-dev-button {
+    background-color: var(--delete-button);
 }
 
-#edit-game-button, #delete-game-button {
+#edit-game-button, #delete-game-button, #edit-dev-button, #delete-dev-button {
     width: 49%;
     border-radius: 10px;
     color: var(--logo-font);
@@ -591,16 +614,16 @@ tbody:hover, td:hover {
 }
 
 #dev-link {
-    color: #000000;
+    color: var(--main-font);
     font-style: italic;
 }
 
 #review-edit-button {
-    color: rgb(98, 255, 98);
+    color: var(--edit-button2);
 }
 
 #review-delete-button {
-    color: rgb(253, 100, 100);
+    color: var(--delete-button2);
 }
 
 #go-back-button {
@@ -615,4 +638,162 @@ tbody:hover, td:hover {
 
 #required {
     color: red;
+}
+
+/* _________________________________________________________ Dev Page */
+
+#devs-intro-container {
+    width: 95%;
+    height: 10vh;
+    min-height: 10vh;
+    background-color: var(--dark-bg);
+    color: var(--logo-font);
+    border-radius: 30px 30px 0 0;
+    border-top: 3px solid var(--main-border);
+    border-left: 3px solid var(--main-border);
+    border-right: 3px solid var(--main-border);
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    font-size: 1.1rem;
+}
+#devs-intro-container:hover {
+    background-color: var(--hover-buttons);
+}
+
+#devs-list-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 95%;
+    height: 82vh;
+    min-height: 82vh;
+    background-color: var(--light-bg);
+    border-radius: 0 0 30px 30px;
+    border: 3px solid var(--main-border);
+}
+
+#devs-list {
+    width: 50%;
+    background-color: transparent;
+}
+
+#dev-list-item {
+    display: block;
+    color: var(--main-font);
+    background-color: var(--main-bg);
+    height: 15vh;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--main-border);
+    border-right: 3px solid var(--main-border);
+}
+
+#dev-list-item:hover {
+    background-color: var(--hover-buttons);
+    border-left: 3px solid var(--dark-border);
+    border-right: 3px solid var(--dark-border);
+}
+
+#dev-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dev-info {
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem;
+    height: 8vh;
+}
+
+#dev-info-1 {
+    font-size: 2rem;
+    color: var(--main-font);
+    height: 7vh;
+}
+
+#dev-logo, #dev-profile-logo {
+    border-radius: 50%;
+    border: 2px solid var(--main-border);
+    background-color: var(--dark-bg);
+    height: 12vh;
+    width: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--logo-font);
+    font-size: 80px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#unknown {
+    font-size: 1.5rem;
+}
+
+/* _________________________________________________________ Dev Profile */
+/* used some of game profile css */
+#logo-container,
+#dev-button-container,
+#game-rating-box,
+#game-name-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dev-layout {
+    width: 95%;
+}
+
+#dev-name {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+#logo-container {
+    width: 100%;
+}
+
+#dev-button-container {
+    width: 15vw;
+    margin: auto;
+}
+
+#dev-games-container {
+    border-radius: 10px;
+    border: 1px solid gray;
+    margin: 5px 0 7px 0;
+    height: 10vh;
+    min-height: 10vh;
+    overflow: hidden;
+}
+
+#dev-games-link {
+    background-color: var(--main-bg);
+    display: block;
+    height: 10vh;
+    min-height: 10vh;
+}
+
+#dev-games-link:hover {
+    background-color: var(--hover-buttons);
+}
+
+#game-rating-box {
+    background-color: var(--dark-bg);
+    color: var(--logo-font);
+    height: 10vh;
+    min-height: 10vh;
+    font-size: 2rem;
+}
+
+#game-name-box {
+    flex-direction: column;
+    height: 10vh;
+    min-height: 10vh;
+    color: var(--main-font);
+}
+
+#games-name {
+    font-size: 2rem;
 }

@@ -10,7 +10,7 @@
                 </spam>
             </a>
             <ul id="dev-form" class="sidebar-dropdown list-unstyled collapse m-0" data-bs-parent="#add-form">
-                <li class="sidebar-item p-3" id="add-form-dropdown">
+                <li class="sidebar-item p-2" id="add-form-dropdown">
                     <div class="p-1" id="add-input-container">
                         <label>Developer Name <span id="required">(Required)</span></label>
                         <input class="form-control" id="add-input" type="text" name="dev_name" value="{{ old('dev_name') }}">
@@ -37,7 +37,7 @@
                 </spam>
             </a>
             <ul id="game-form" class="sidebar-dropdown show list-unstyled collapse m-0" data-bs-parent="#add-form">
-                <li class="sidebar-item p-3" id="add-form-dropdown">
+                <li class="sidebar-item p-2" id="add-form-dropdown">
                     <div class="p-1" id="add-input-container">
                         @if (Session::get('name'))
                             <label>Hello, {{Session::get('name')}}.</label>

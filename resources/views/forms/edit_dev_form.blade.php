@@ -10,7 +10,7 @@
                 </spam>
             </a>
             <ul id="edit-dev" class="sidebar-dropdown list-unstyled show collapse m-0" data-bs-parent="#edit-dev-form">
-                <li class="sidebar-item p-3" id="add-form-dropdown">
+                <li class="sidebar-item p-2" id="add-form-dropdown">
                     <input class="form-control" type="text" name="dev_id_edit" hidden value="{{$dev->id}}">
                     <div class="p-1" id="add-input-container">
                         <label>Developer Name <span id="required">(Required)</span></label>
